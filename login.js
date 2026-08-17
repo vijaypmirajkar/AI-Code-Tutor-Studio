@@ -299,27 +299,7 @@ function initializeGoogleLogin() {
 
     });
 
-    google.accounts.id.renderButton(
-
-        googleButton,
-
-        {
-            type: "standard",
-
-            theme: "outline",
-
-            size: "large",
-
-            width: 400,
-
-            text: "signin_with",
-
-            shape: "rectangular",
-
-            logo_alignment: "left"
-        }
-
-    );
+   
 
     console.log(
         "Google Sign-In button initialized."
