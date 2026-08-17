@@ -51,7 +51,7 @@ function goToDashboard() {
      */
 
     window.location.href =
-        "../dashboard/dashboard.html";
+        "dashboard.html";
 }
 
 
