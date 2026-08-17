@@ -278,7 +278,7 @@ function initializeGoogleLogin() {
     }
 
     // Clear previous button
-    googleButton.innerHTML = "";
+  
 
     // Initialize Google
     google.accounts.id.initialize({
@@ -296,27 +296,7 @@ function initializeGoogleLogin() {
     });
 
     // Render normal Google button
-    google.accounts.id.renderButton(
-
-        googleButton,
-
-        {
-            type: "standard",
-
-            theme: "outline",
-
-            size: "large",
-
-            text: "signin_with",
-
-            shape: "rectangular",
-
-            logo_alignment: "left",
-
-            width: 400
-        }
-
-    );
+ 
 
     console.log(
         "Google Sign-In button ready."
