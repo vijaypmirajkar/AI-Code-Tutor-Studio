@@ -154,7 +154,7 @@ async function loginWithGoogle(credential) {
         );
 
         window.location.href =
-            "../dashboard/dashboard.html";
+            "dashboard.html";
 
     } catch (error) {
 
