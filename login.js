@@ -1,22 +1,17 @@
-// =========================================================
-// LOGIN.JS
-// AI CODE TUTOR STUDIO
-// =========================================================
-
 "use strict";
-
-const form = document.getElementById("loginForm");
 
 const API_URL = "https://ai-code-tutor-studio.onrender.com";
 
 
 // =========================================================
-// NORMAL EMAIL LOGIN
+// EMAIL LOGIN
 // =========================================================
+
+const form = document.getElementById("loginForm");
 
 if (form) {
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", async function (e) {
 
         e.preventDefault();
 
@@ -26,14 +21,10 @@ if (form) {
         const password =
             document.getElementById("password").value.trim();
 
-
         if (!email || !password) {
-
             alert("Please enter email and password.");
-
             return;
         }
-
 
         try {
 
@@ -53,63 +44,31 @@ if (form) {
                 }
             );
 
-
             const data = await response.json();
 
-
             if (!response.ok) {
-
-                alert(
-                    data.detail ||
-                    "Login failed."
-                );
-
+                alert(data.detail || "Login failed.");
                 return;
             }
-
-
-            // =================================================
-            // SAVE AUTHENTICATION
-            // =================================================
 
             localStorage.setItem(
                 "access_token",
                 data.access_token
             );
 
-
             localStorage.setItem(
                 "user",
                 JSON.stringify(data.user)
             );
 
+            window.location.href =
+                "../dashboard/dashboard.html";
 
-            // =================================================
-            // GO TO DASHBOARD
-            // =================================================
+        } catch (error) {
 
-            console.log(
-                "LOGIN SUCCESS → DASHBOARD"
-            );
+            console.error("LOGIN ERROR:", error);
 
-
-            window.location.replace(
-                "dashboard.html"
-            );
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "LOGIN ERROR:",
-                error
-            );
-
-            alert(
-                "Cannot connect to backend."
-            );
-
+            alert("Cannot connect to backend.");
         }
 
     });
@@ -118,50 +77,39 @@ if (form) {
 
 
 // =========================================================
-// GOOGLE LOGIN
+// GOOGLE LOGIN CALLBACK
 // =========================================================
 
 function handleGoogleLogin(response) {
 
-    console.log(
-        "Google credential received"
-    );
+    console.log("Google credential received");
 
+    if (!response || !response.credential) {
 
-    if (
-        !response ||
-        !response.credential
-    ) {
+        console.error("No Google credential received.");
 
-        alert(
-            "Google login failed."
-        );
+        alert("Google login failed.");
 
         return;
     }
 
-
-    loginWithGoogle(
-        response.credential
-    );
-
+    loginWithGoogle(response.credential);
 }
 
 
 // =========================================================
-// GOOGLE BACKEND LOGIN
+// SEND GOOGLE TOKEN TO BACKEND
 // =========================================================
 
-async function loginWithGoogle(
-    credential
-) {
+async function loginWithGoogle(credential) {
 
     try {
+
+        console.log("Sending Google credential to backend...");
 
         const response = await fetch(
             `${API_URL}/auth/google`,
             {
-
                 method: "POST",
 
                 headers: {
@@ -171,20 +119,15 @@ async function loginWithGoogle(
                 body: JSON.stringify({
                     credential: credential
                 })
-
             }
         );
 
-
-        const data =
-            await response.json();
-
+        const data = await response.json();
 
         console.log(
             "Google backend response:",
             data
         );
-
 
         if (!response.ok) {
 
@@ -196,43 +139,24 @@ async function loginWithGoogle(
             return;
         }
 
-
-        // =================================================
-        // SAVE JWT
-        // =================================================
-
         localStorage.setItem(
             "access_token",
             data.access_token
         );
-
-
-        // =================================================
-        // SAVE USER
-        // =================================================
 
         localStorage.setItem(
             "user",
             JSON.stringify(data.user)
         );
 
-
-        // =================================================
-        // GO TO DASHBOARD
-        // =================================================
-
         console.log(
-            "GOOGLE LOGIN SUCCESS → DASHBOARD"
+            "GOOGLE LOGIN SUCCESS"
         );
 
+        window.location.href =
+            "../dashboard/dashboard.html";
 
-        window.location.replace(
-            "dashboard.html"
-        );
-
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(
             "GOOGLE LOGIN ERROR:",
@@ -242,14 +166,12 @@ async function loginWithGoogle(
         alert(
             "Unable to connect to authentication server."
         );
-
     }
-
 }
 
 
 // =========================================================
-// INITIALIZE GOOGLE SIGN-IN
+// INITIALIZE GOOGLE
 // =========================================================
 
 function initializeGoogleLogin() {
@@ -261,7 +183,7 @@ function initializeGoogleLogin() {
     ) {
 
         console.log(
-            "Google Identity Services not loaded yet."
+            "Waiting for Google Identity Services..."
         );
 
         setTimeout(
@@ -272,20 +194,6 @@ function initializeGoogleLogin() {
         return;
     }
 
-    const googleButton =
-        document.getElementById("googleButton");
-
-    if (!googleButton) {
-
-        console.warn(
-            "Google button not found."
-        );
-
-        return;
-    }
-
-    // Prevent duplicate buttons
-    googleButton.innerHTML = "";
 
     google.accounts.id.initialize({
 
@@ -295,40 +203,55 @@ function initializeGoogleLogin() {
         callback:
             handleGoogleLogin,
 
-        auto_select: false
+        auto_select: false,
+
+        cancel_on_tap_outside: true
 
     });
 
-    google.accounts.id.renderButton(
 
-        googleButton,
+    const button =
+        document.getElementById(
+            "customGoogleButton"
+        );
 
-        {
-            type: "standard",
 
-            theme: "outline",
+    if (!button) {
 
-            size: "large",
+        console.error(
+            "Custom Google button not found."
+        );
 
-            width: 400,
+        return;
+    }
 
-            text: "signin_with",
 
-            shape: "rectangular",
+    // =====================================================
+    // CUSTOM BUTTON CLICK
+    // =====================================================
 
-            logo_alignment: "left"
+    button.addEventListener(
+        "click",
+        function () {
+
+            console.log(
+                "Google button clicked"
+            );
+
+            google.accounts.id.prompt();
+
         }
-
     );
 
+
     console.log(
-        "Google Sign-In button initialized."
+        "Custom Google button ready."
     );
 }
 
 
 // =========================================================
-// START GOOGLE LOGIN
+// START
 // =========================================================
 
 window.addEventListener(
