@@ -1,0 +1,62 @@
+/* ==========================================
+   AI CODE TUTOR STUDIO
+   Design Tokens
+========================================== */
+
+:root {
+
+  /* Brand Colors */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #06b6d4;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* Background */
+  --bg: #0b1120;
+  --surface: #111827;
+  --surface-light: #1f2937;
+  --card: rgba(30, 41, 59, 0.75);
+
+  /* Text */
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-light: #cbd5e1;
+
+  /* Borders */
+  --border: rgba(255,255,255,.08);
+
+  /* Gradients */
+  --gradient-primary:
+    linear-gradient(135deg,#6366f1,#06b6d4);
+
+  --gradient-secondary:
+    linear-gradient(135deg,#9333ea,#ec4899);
+
+  /* Shadows */
+  --shadow-sm:
+      0 5px 12px rgba(0,0,0,.25);
+
+  --shadow-md:
+      0 12px 30px rgba(0,0,0,.35);
+
+  --shadow-lg:
+      0 20px 60px rgba(0,0,0,.45);
+
+  /* Radius */
+
+  --radius-sm:8px;
+  --radius-md:14px;
+  --radius-lg:22px;
+  --radius-xl:32px;
+
+  /* Layout */
+
+  --container:1280px;
+
+  /* Transition */
+
+  --transition:.35s ease;
+
+}

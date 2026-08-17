@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | AI Code Tutor Studio</title>
+
+    <link rel="stylesheet"
+          href="settings.css">
+
+</head>
+
+<body>
+
+<div class="settings-app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="settings-sidebar">
+
+
+        <!-- BRAND -->
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                AI
+            </div>
+
+            <div class="brand-text">
+
+                <strong>Code Tutor</strong>
+
+                <span>Studio</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="settings-nav">
+
+
+            <!-- DASHBOARD -->
+
+            <a href="dashboard.html"
+               data-page="dashboard">
+
+                <span class="nav-icon">⌂</span>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <!-- WORKSPACE -->
+
+            <a href="workspace.html"
+               data-page="workspace">
+
+                <span class="nav-icon">▣</span>
+
+                <span>Workspace</span>
+
+            </a>
+
+
+            <!-- SETTINGS -->
+
+            <a href="settings.html"
+               class="active"
+               data-page="settings">
+
+                <span class="nav-icon">⚙</span>
+
+                <span>Settings</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <button
+                type="button"
+                id="logoutBtn"
+                class="logout-btn">
+
+                <span>↪</span>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="settings-main">
+
+
+        <!-- HEADER -->
+
+        <header class="settings-header">
+
+            <div>
+
+                <h1>Settings</h1>
+
+                <p>
+                    Manage your Code Tutor Studio preferences
+                </p>
+
+            </div>
+
+
+            <!-- USER -->
+
+            <div class="header-user">
+
+                <div
+                    class="user-avatar"
+                    id="userAvatar">
+
+                    U
+
+                </div>
+
+
+                <div class="header-user-info">
+
+                    <strong id="headerUserName">
+                        Developer
+                    </strong>
+
+                    <span id="headerUserEmail">
+                        user@email.com
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             SETTINGS CONTENT
+        ================================================== -->
+
+        <section class="settings-content">
+
+
+            <!-- =================================================
+                 PROFILE
+            ================================================== -->
+
+            <div class="settings-card">
+
+
+                <div class="card-header">
+
+                    <div class="card-icon profile-icon">
+                        👤
+                    </div>
+
+
+                    <div>
+
+                        <h2>Profile</h2>
+
+                        <p>
+                            Manage your account information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="profile-section">
+
+
+                    <!-- AVATAR -->
+
+                    <div
+                        class="large-avatar"
+                        id="profileAvatar">
+
+                        U
+
+                    </div>
+
+
+
+                    <!-- PROFILE FIELDS -->
+
+                    <div class="profile-fields">
+
+
+                        <!-- NAME -->
+
+                        <div class="field-group">
+
+                            <label for="profileName">
+                                Name
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="profileName"
+                                name="profileName"
+                                placeholder="Your name"
+                                autocomplete="name">
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="field-group">
+
+                            <label for="profileEmail">
+                                Email
+                            </label>
+
+
+                            <input
+                                type="email"
+                                id="profileEmail"
+                                name="profileEmail"
+                                placeholder="Your email"
+                                disabled>
+
+                        </div>
+
+
+
+                        <!-- BUTTONS -->
+
+                        <div class="profile-actions">
+
+
+                            <button
+                                type="button"
+                                id="saveProfileBtn"
+                                class="primary-btn">
+
+                                Save Profile
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                id="changePasswordBtn"
+                                class="secondary-btn">
+
+                                Change Password
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 EDITOR PREFERENCES
+            ================================================== -->
+
+            <div class="settings-card">
+
+
+                <div class="card-header">
+
+                    <div class="card-icon editor-icon">
+                        💻
+                    </div>
+
+
+                    <div>
+
+                        <h2>Editor Preferences</h2>
+
+                        <p>
+                            Customize your coding environment
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="preference-grid">
+
+
+                    <!-- DEFAULT LANGUAGE ONLY -->
+
+                    <div class="preference-item">
+
+                        <div class="preference-info">
+
+                            <strong>
+                                Default Language
+                            </strong>
+
+                            <span>
+                                Language used when opening
+                                a new workspace
+                            </span>
+
+                        </div>
+
+
+                        <select id="defaultLanguage">
+
+                            <option value="python">
+                                Python
+                            </option>
+
+                            <option value="javascript">
+                                JavaScript
+                            </option>
+
+                            <option value="java">
+                                Java
+                            </option>
+
+                            <option value="c">
+                                C
+                            </option>
+
+                            <option value="cpp">
+                                C++
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 AI TUTOR PREFERENCES
+            ================================================== -->
+
+            <div class="settings-card">
+
+
+                <div class="card-header">
+
+                    <div class="card-icon ai-icon">
+                        🤖
+                    </div>
+
+
+                    <div>
+
+                        <h2>AI Tutor Preferences</h2>
+
+                        <p>
+                            Control how your AI coding tutor teaches
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="preference-grid">
+
+
+                    <!-- LEARNING MODE -->
+
+                    <div class="preference-item">
+
+                        <div class="preference-info">
+
+                            <strong>
+                                Learning Mode
+                            </strong>
+
+                            <span>
+                                Adjust the difficulty of explanations
+                            </span>
+
+                        </div>
+
+
+                        <select id="learningMode">
+
+                            <option value="beginner">
+                                Beginner
+                            </option>
+
+                            <option value="intermediate">
+                                Intermediate
+                            </option>
+
+                            <option value="advanced">
+                                Advanced
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- EXPLANATION STYLE -->
+
+                    <div class="preference-item">
+
+                        <div class="preference-info">
+
+                            <strong>
+                                Explanation Style
+                            </strong>
+
+                            <span>
+                                Choose how AI explains your code
+                            </span>
+
+                        </div>
+
+
+                        <select id="explanationStyle">
+
+                            <option value="simple">
+                                Simple
+                            </option>
+
+                            <option value="detailed">
+                                Detailed
+                            </option>
+
+                            <option value="technical">
+                                Technical
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- STEP BY STEP -->
+
+                    <div class="preference-item">
+
+                        <div class="preference-info">
+
+                            <strong>
+                                Step-by-step Explanations
+                            </strong>
+
+                            <span>
+                                Break code into guided learning steps
+                            </span>
+
+                        </div>
+
+
+                        <label class="toggle">
+
+                            <input
+                                type="checkbox"
+                                id="stepByStep"
+                                checked>
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- COMPLEXITY -->
+
+                    <div class="preference-item">
+
+                        <div class="preference-info">
+
+                            <strong>
+                                Complexity Analysis
+                            </strong>
+
+                            <span>
+                                Show time and space complexity
+                            </span>
+
+                        </div>
+
+
+                        <label class="toggle">
+
+                            <input
+                                type="checkbox"
+                                id="complexityAnalysis"
+                                checked>
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="settings.js"></script>
+
+</body>
+
+</html>

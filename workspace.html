@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+AI Code Tutor Workspace
+</title>
+
+
+<link rel="stylesheet" href="workspace-variables.css">
+
+<link rel="stylesheet" href="workspace-global.css">
+
+<link rel="stylesheet" href="workspace.css">
+
+
+</head>
+
+
+<body>
+    <div class="workspace-toolbar">
+
+   <button id="newBtn">
+    New
+</button>
+
+<button id="openBtn">
+    Open
+</button>
+
+<button id="saveBtn">
+    Save
+</button>
+
+    <button id="runBtn">
+        <i class="fa-solid fa-play"></i>
+        Run
+    </button>
+
+    <button id="analyzeBtn">
+        <i class="fa-solid fa-brain"></i>
+        Analyze
+    </button>
+    
+
+    <button id="errorBtn">
+        🐞 Errors
+    </button>
+
+    <button id="algorithmBtn">
+        📊 Algorithm
+    </button>
+
+    <button id="chatBtn">
+        💬 Chat
+    </button>
+
+</div>
+
+
+<!-- ==============================
+ TOP BAR
+================================ -->
+
+<header class="workspace-header">
+
+
+<div class="brand">
+
+<div class="logo-icon">
+AI
+</div>
+
+
+<h2>
+Code Tutor Studio
+</h2>
+
+</div>
+
+
+
+<div class="toolbar">
+
+
+<select id="language">
+
+<option>
+Python
+</option>
+
+<option>
+JavaScript
+</option>
+
+<option>
+Java
+</option>
+
+<option>
+C++
+</option>
+
+</select>
+
+
+
+<select id="level">
+
+<option>
+Beginner
+</option>
+
+
+<option>
+Intermediate
+</option>
+
+
+<option>
+Advanced
+</option>
+
+</select>
+
+
+
+<button class="run-btn">
+
+▶ Run
+
+</button>
+
+
+
+<button class="analyze-btn">
+
+🧠 Analyze
+
+</button>
+
+
+</div>
+
+
+</header>
+
+
+
+
+
+<!-- ==============================
+ MAIN AREA
+================================ -->
+
+
+<div class="workspace-container">
+
+
+
+
+
+<!-- FILE EXPLORER -->
+
+<aside class="file-panel">
+
+
+<h3>
+Explorer
+</h3>
+
+
+
+<div class="file active">
+
+📄 main.py
+
+</div>
+
+
+<div class="file">
+
+📄 utils.py
+
+</div>
+
+
+<div class="file">
+
+📄 README.md
+
+</div>
+
+
+
+<button class="upload-file-btn">
+    + Upload File
+</button>
+
+
+</aside>
+
+
+<!-- CODE EDITOR -->
+
+<section class="editor-panel">
+
+
+<div class="editor-header">
+
+main.py
+
+</div>
+
+
+
+<div class="code-area">
+
+
+<div class="line-numbers">
+
+1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7
+
+</div>
+
+
+
+<div id="monaco-editor"></div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- AI PANEL -->
+
+<aside class="ai-panel">
+
+
+<div class="ai-header">
+
+🤖 AI Tutor
+
+</div>
+
+
+
+<div class="mode">
+
+Learning Mode:
+
+<span>
+Beginner
+</span>
+
+</div>
+
+
+
+<div class="explanation">
+
+
+<h3>
+
+Step 1
+
+</h3>
+
+
+<p>
+
+This program creates a function
+and prints a message.
+
+</p>
+
+
+</div>
+
+
+
+<div class="navigation">
+
+
+<button>
+
+⬅ Previous
+
+</button>
+
+
+<button>
+
+Next ➡
+
+</button>
+
+
+</div>
+
+</aside>
+
+</div>
+<!-- ==============================
+ DRY RUN CONSOLE
+================================ -->
+
+
+
+<section class="console">
+
+    <div class="console-header">
+
+        <div>
+            <span class="console-title">
+                Dry Run Console
+            </span>
+
+            <span class="console-status">
+                Ready
+            </span>
+        </div>
+
+        <button
+            id="clearConsoleBtn"
+            class="clear-console-btn"
+        >
+            Clear
+        </button>
+
+    </div>
+
+
+    <!-- PROGRAM INPUT -->
+
+    <div class="program-input-section">
+
+        <div class="console-section-title">
+            Program Input
+        </div>
+
+        <textarea
+            id="programInput"
+            placeholder="Enter input values here, one per line...
+
+Example:
+10
+5"
+        ></textarea>
+
+    </div>
+
+
+    <!-- OUTPUT -->
+
+    <div class="program-output-section">
+
+        <div class="console-section-title">
+            Output
+        </div>
+
+        <div class="console-output">
+
+            Waiting for execution...
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Monaco Editor CDN -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.0/min/vs/loader.min.js"></script>
+
+
+<script src="monaco-editor.js"></script>
+
+
+<script src="api.js"></script>
+<script src="workspace.js"></script>
+
+
+</body>
+
+</html>

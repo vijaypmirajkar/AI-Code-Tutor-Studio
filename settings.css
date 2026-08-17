@@ -1,0 +1,1013 @@
+/* ==========================================================
+   AI CODE TUTOR STUDIO
+   SETTINGS PAGE
+   Premium Dark UI
+========================================================== */
+
+:root {
+    --bg-main: #080a12;
+    --bg-sidebar: #0b0e18;
+    --bg-card: #101522;
+    --bg-card-hover: #141a29;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(99, 102, 241, 0.35);
+
+    --text-primary: #f5f7ff;
+    --text-secondary: #9ba4b8;
+    --text-muted: #697386;
+
+    --primary: #6366f1;
+    --primary-hover: #7477ff;
+
+    --cyan: #12b5d0;
+    --green: #22c55e;
+    --danger: #ef4444;
+
+    --sidebar-width: 230px;
+    --header-height: 78px;
+
+    --radius: 14px;
+}
+
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: var(--bg-main);
+    color: var(--text-primary);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+
+/* ==========================================================
+   APP
+========================================================== */
+
+.settings-app {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
+.settings-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: var(--sidebar-width);
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 22px 14px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0d101b 0%,
+            #090b13 100%
+        );
+
+    border-right: 1px solid var(--border);
+
+    z-index: 100;
+}
+
+
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 4px 8px 28px;
+}
+
+.brand-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #12b5d0
+        );
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 25px rgba(99, 102, 241, 0.25);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.1;
+}
+
+.brand-text strong {
+    font-size: 14px;
+    color: #fff;
+}
+
+.brand-text span {
+    margin-top: 4px;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* ==========================================================
+   NAVIGATION
+========================================================== */
+
+.settings-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.settings-nav a {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 42px;
+
+    padding: 0 12px;
+
+    border-radius: 10px;
+
+    color: var(--text-secondary);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.settings-nav a:hover {
+    background: rgba(255, 255, 255, 0.045);
+
+    color: #fff;
+
+    transform: translateX(2px);
+}
+
+.settings-nav a.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(99, 102, 241, 0.20),
+            rgba(99, 102, 241, 0.07)
+        );
+
+    color: #fff;
+
+    border: 1px solid rgba(99, 102, 241, 0.18);
+}
+
+.nav-icon {
+    width: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+}
+
+
+/* ==========================================================
+   SIDEBAR BOTTOM
+========================================================== */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.logout-btn {
+    width: 100%;
+
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border: 1px solid rgba(239, 68, 68, 0.15);
+
+    border-radius: 10px;
+
+    background: rgba(239, 68, 68, 0.06);
+
+    color: #f87171;
+
+    cursor: pointer;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.12);
+
+    border-color: rgba(239, 68, 68, 0.28);
+}
+
+
+/* ==========================================================
+   MAIN
+========================================================== */
+
+.settings-main {
+    width: calc(100% - var(--sidebar-width));
+
+    margin-left: var(--sidebar-width);
+
+    min-height: 100vh;
+
+    padding-bottom: 50px;
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.settings-header {
+    min-height: var(--header-height);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 34px;
+
+    border-bottom: 1px solid var(--border);
+
+    background:
+        rgba(8, 10, 18, 0.92);
+
+    backdrop-filter: blur(14px);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 50;
+}
+
+.settings-header h1 {
+    font-size: 25px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+.settings-header p {
+    margin-top: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   HEADER USER
+========================================================== */
+
+.header-user {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #12b5d0
+        );
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.header-user-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.header-user-info strong {
+    font-size: 13px;
+}
+
+.header-user-info span {
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.settings-content {
+    width: min(1050px, calc(100% - 68px));
+
+    margin: 30px auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* ==========================================================
+   SETTINGS CARD
+========================================================== */
+
+.settings-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17, 21, 34, 0.98),
+            rgba(12, 15, 25, 0.98)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 22px;
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.settings-card:hover {
+    border-color: var(--border-hover);
+}
+
+
+/* ==========================================================
+   CARD HEADER
+========================================================== */
+
+.card-header {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 22px;
+}
+
+.card-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    font-size: 17px;
+}
+
+.profile-icon {
+    background: rgba(99, 102, 241, 0.13);
+}
+
+.editor-icon {
+    background: rgba(18, 181, 208, 0.13);
+}
+
+.ai-icon {
+    background: rgba(168, 85, 247, 0.13);
+}
+
+.notification-icon {
+    background: rgba(34, 197, 94, 0.13);
+}
+
+.card-header h2 {
+    font-size: 16px;
+
+    font-weight: 650;
+}
+
+.card-header p {
+    margin-top: 4px;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+.profile-section {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 22px;
+}
+
+.large-avatar {
+    width: 78px;
+    height: 78px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #12b5d0
+        );
+
+    color: #fff;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    box-shadow:
+        0 12px 30px rgba(99, 102, 241, 0.20);
+}
+
+.profile-fields {
+    flex: 1;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.field-group label {
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.field-group input {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 13px;
+
+    background: #0b0f19;
+
+    border: 1px solid #273044;
+
+    border-radius: 9px;
+
+    color: #fff;
+
+    outline: none;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.field-group input:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+.field-group input:disabled {
+    color: #697386;
+
+    cursor: not-allowed;
+}
+
+.profile-actions {
+    grid-column: 1 / -1;
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 2px;
+}
+
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.primary-btn,
+.secondary-btn {
+    height: 40px;
+
+    padding: 0 17px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.primary-btn {
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #5759df
+        );
+
+    color: #fff;
+}
+
+.primary-btn:hover {
+    transform: translateY(-1px);
+
+    background: var(--primary-hover);
+}
+
+.secondary-btn {
+    border: 1px solid #2c3549;
+
+    background: #111624;
+
+    color: #d5d9e4;
+}
+
+.secondary-btn:hover {
+    background: #171d2d;
+
+    border-color: #414d67;
+}
+
+
+/* ==========================================================
+   PREFERENCE GRID
+========================================================== */
+
+.preference-grid {
+    display: flex;
+    flex-direction: column;
+
+    border-top: 1px solid var(--border);
+}
+
+.preference-item {
+    min-height: 66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 13px 2px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.preference-item:last-child {
+    border-bottom: none;
+}
+
+.preference-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.preference-info strong {
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.preference-info span {
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* ==========================================================
+   SELECT
+========================================================== */
+
+.preference-item select {
+    width: 170px;
+
+    height: 38px;
+
+    padding: 0 11px;
+
+    background: #0b0f19;
+
+    border: 1px solid #293247;
+
+    border-radius: 8px;
+
+    color: #e7eaf1;
+
+    outline: none;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.preference-item select:focus {
+    border-color: var(--primary);
+}
+
+
+/* ==========================================================
+   TOGGLE
+========================================================== */
+
+.toggle {
+    position: relative;
+
+    width: 42px;
+    height: 23px;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+}
+
+.toggle input {
+    opacity: 0;
+
+    width: 0;
+    height: 0;
+
+    position: absolute;
+}
+
+.slider {
+    position: absolute;
+
+    inset: 0;
+
+    background: #252d3d;
+
+    border-radius: 30px;
+
+    transition: 0.25s;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 17px;
+    height: 17px;
+
+    left: 3px;
+    top: 3px;
+
+    border-radius: 50%;
+
+    background: #9aa3b5;
+
+    transition: 0.25s;
+}
+
+.toggle input:checked + .slider {
+    background: var(--primary);
+}
+
+.toggle input:checked + .slider::before {
+    transform: translateX(19px);
+
+    background: #fff;
+}
+
+
+/* ==========================================================
+   NOTIFICATIONS
+========================================================== */
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+
+    border-top: 1px solid var(--border);
+}
+
+.notification-item {
+    min-height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 13px 2px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.notification-item strong {
+    font-size: 13px;
+}
+
+.notification-item span {
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080a12;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2c3445;
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #414b61;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 950px) {
+
+    :root {
+        --sidebar-width: 190px;
+    }
+
+    .settings-content {
+        width: calc(100% - 40px);
+    }
+
+    .profile-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-actions {
+        grid-column: auto;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .settings-sidebar {
+        position: relative;
+
+        width: 100%;
+        height: auto;
+
+        padding: 14px;
+
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .settings-app {
+        display: block;
+    }
+
+    .settings-main {
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+    .settings-nav {
+        flex-direction: row;
+
+        overflow-x: auto;
+    }
+
+    .settings-nav a {
+        flex-shrink: 0;
+    }
+
+    .sidebar-bottom {
+        margin-top: 12px;
+    }
+
+    .settings-header {
+        padding: 16px 20px;
+    }
+
+    .header-user-info {
+        display: none;
+    }
+
+    .settings-content {
+        width: calc(100% - 28px);
+
+        margin: 18px auto;
+    }
+
+    .settings-card {
+        padding: 17px;
+    }
+
+    .profile-section {
+        flex-direction: column;
+    }
+
+    .profile-fields {
+        width: 100%;
+    }
+
+    .preference-item,
+    .notification-item {
+        align-items: flex-start;
+    }
+
+    .preference-item select {
+        width: 135px;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 480px) {
+
+    .settings-header h1 {
+        font-size: 21px;
+    }
+
+    .settings-header p {
+        font-size: 11px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+    }
+
+    .preference-item {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .preference-item select {
+        width: 100%;
+    }
+
+}

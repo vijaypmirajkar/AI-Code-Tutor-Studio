@@ -1,0 +1,3151 @@
+/* ==========================================================
+   AI CODE TUTOR STUDIO
+   COMPLETE WORKSPACE CSS
+   ONE SCREEN LAYOUT + VISIBLE OUTPUT CONSOLE
+========================================================== */
+
+:root {
+    --header-height: 78px;
+
+    --workspace-bg: #080d19;
+    --header-bg: #09101f;
+    --file-bg: #091221;
+    --editor-bg: #181a1f;
+    --editor-header: #111722;
+    --ai-bg: #0c1423;
+
+    --workspace-border: rgba(255,255,255,0.09);
+
+    --workspace-text: #ffffff;
+    --workspace-soft: #b9c2d4;
+
+    --file-hover: rgba(99,102,241,0.15);
+    --file-active: rgba(99,102,241,0.35);
+
+    --ai-card: #1b2536;
+    --ai-border: rgba(255,255,255,0.09);
+
+    --ai-primary: #6366f1;
+    --ai-secondary: #16c7e8;
+
+    --run-color: #20c76a;
+    --analyze-color: #6366f1;
+    --upload-color: #16b5d0;
+
+    --console-bg: #050505;
+    --console-border: #1d9d55;
+    --console-text: #00e676;
+
+    --line-number: #687386;
+
+    --workspace-font:
+        "JetBrains Mono",
+        "Consolas",
+        "Courier New",
+        monospace;
+}
+
+
+/* ==========================================================
+   GLOBAL RESET
+========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    background: var(--workspace-bg);
+    color: var(--workspace-text);
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+}
+
+
+/* ==========================================================
+   BODY / MAIN APP
+========================================================== */
+
+body {
+    min-height: 100vh;
+}
+
+
+/* ==========================================================
+   TOP TOOLBAR
+========================================================== */
+
+.workspace-toolbar {
+
+    height: 60px;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 23px;
+
+    background: #111725;
+
+    border-bottom:
+        1px solid var(--workspace-border);
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+}
+
+
+.workspace-toolbar button {
+
+    height: 42px;
+
+    padding: 0 17px;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    border-radius: 10px;
+
+    background: #151e2e;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        border-color .2s ease;
+}
+
+
+.workspace-toolbar button:hover {
+
+    background: #202b42;
+
+    border-color:
+        rgba(99,102,241,.5);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.workspace-toolbar button:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* ==========================================================
+   MAIN HEADER
+========================================================== */
+
+.workspace-header {
+
+    height: var(--header-height);
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background:
+        var(--header-bg);
+
+    border-bottom:
+        1px solid var(--workspace-border);
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    min-width: 280px;
+}
+
+
+.brand h2 {
+
+    margin: 0;
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+    color: white;
+}
+
+
+/* AI LOGO */
+
+.brand .logo,
+.brand .ai-logo {
+
+    width: 56px;
+
+    height: 56px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #12b9d8
+        );
+
+    color: white;
+
+    font-size: 25px;
+
+    font-weight: 800;
+}
+
+
+/* ==========================================================
+   HEADER TOOLBAR
+========================================================== */
+
+.toolbar {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    height: 100%;
+}
+
+
+.toolbar select {
+
+    height: 48px;
+
+    min-width: 180px;
+
+    padding: 0 20px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    background: #111927;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+.toolbar select:focus {
+
+    border-color:
+        rgba(99,102,241,.6);
+}
+
+
+/* ==========================================================
+   RUN BUTTON
+========================================================== */
+
+.run-btn {
+
+    height: 48px;
+
+    min-width: 132px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        var(--run-color);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 22px rgba(32,199,106,.12);
+
+    transition:
+        transform .2s ease,
+        filter .2s ease;
+}
+
+
+.run-btn:hover {
+
+    filter: brightness(1.08);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* ==========================================================
+   ANALYZE BUTTON
+========================================================== */
+
+.analyze-btn {
+
+    height: 48px;
+
+    min-width: 160px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        var(--analyze-color);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(99,102,241,.15);
+
+    transition:
+        transform .2s ease,
+        filter .2s ease;
+}
+
+
+.analyze-btn:hover {
+
+    filter: brightness(1.08);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* ==========================================================
+   MAIN WORKSPACE
+
+   IMPORTANT:
+   The console now gets its own row.
+========================================================== */
+
+.workspace-container {
+
+    width: 100%;
+
+    height:
+        calc(
+            100vh -
+            60px -
+            var(--header-height)
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        300px
+        minmax(0, 1fr)
+        390px;
+
+    grid-template-rows:
+        minmax(0, 1fr);
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   FILE EXPLORER
+========================================================== */
+
+.file-panel {
+
+    min-width: 0;
+
+    min-height: 0;
+
+    background:
+        var(--file-bg);
+
+    border-right:
+        1px solid var(--workspace-border);
+
+    padding:
+        24px 18px;
+
+    overflow: hidden;
+}
+
+
+.file-panel h3 {
+
+    margin:
+        0 0 22px 0;
+
+    font-size: 24px;
+
+    color: white;
+}
+
+
+/* ==========================================================
+   FILES
+========================================================== */
+
+.file {
+
+    min-height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        0 18px;
+
+    margin-bottom: 8px;
+
+    border-radius: 12px;
+
+    color:
+        var(--workspace-soft);
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+}
+
+
+.file:hover {
+
+    background:
+        var(--file-hover);
+
+    color: white;
+}
+
+
+.file.active {
+
+    background:
+        var(--file-active);
+
+    color: white;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(99,102,241,.15);
+}
+
+
+.file-icon {
+
+    font-size: 18px;
+}
+
+
+/* ==========================================================
+   UPLOAD BUTTON
+========================================================== */
+
+.upload-file-btn,
+.upload-btn {
+
+    width: 100%;
+
+    min-height: 54px;
+
+    margin-top: 28px;
+
+    padding: 0 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        var(--upload-color);
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        filter .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.upload-file-btn:hover,
+.upload-btn:hover {
+
+    filter: brightness(1.08);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(18,181,208,.20);
+}
+
+
+/* ==========================================================
+   EDITOR PANEL
+========================================================== */
+
+.editor-panel {
+
+    min-width: 0;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+        var(--editor-bg);
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   EDITOR HEADER
+========================================================== */
+
+.editor-header {
+
+    height: 54px;
+
+    min-height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        0 28px;
+
+    background:
+        var(--editor-header);
+
+    border-bottom:
+        1px solid var(--workspace-border);
+
+    color:
+        var(--workspace-soft);
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   EDITOR AREA
+========================================================== */
+
+.code-area {
+
+    flex: 1;
+
+    min-height: 0;
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 0;
+}
+
+
+/* ==========================================================
+   MONACO
+========================================================== */
+
+#monaco-editor {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+}
+
+
+/* ==========================================================
+   CODEMIRROR
+========================================================== */
+
+.CodeMirror {
+
+    width: 100%;
+
+    height: 100% !important;
+
+    font-family:
+        var(--workspace-font);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    background:
+        var(--editor-bg);
+}
+
+
+.CodeMirror-scroll {
+
+    overflow: auto !important;
+}
+
+
+/* ==========================================================
+   OLD CODE FALLBACK
+========================================================== */
+
+.line-numbers {
+
+    color:
+        var(--line-number);
+
+    text-align: right;
+
+    padding-right: 20px;
+
+    user-select: none;
+
+    line-height: 1.8;
+}
+
+
+#code {
+
+    color:
+        var(--editor-text);
+
+    font-family:
+        var(--workspace-font);
+
+    line-height: 1.8;
+
+    white-space: pre;
+}
+
+
+/* ==========================================================
+   AI PANEL
+========================================================== */
+
+.ai-panel {
+
+    min-width: 0;
+
+    min-height: 0;
+
+    background:
+        var(--ai-bg);
+
+    border-left:
+        1px solid var(--workspace-border);
+
+    padding:
+        20px 24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   AI HEADER
+========================================================== */
+
+.ai-header {
+
+    flex-shrink: 0;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+
+    color: white;
+}
+
+
+/* ==========================================================
+   LEARNING MODE
+========================================================== */
+
+.mode {
+
+    flex-shrink: 0;
+
+    padding:
+        15px 18px;
+
+    background:
+        var(--ai-card);
+
+    border:
+        1px solid var(--ai-border);
+
+    border-radius: 14px;
+
+    font-size: 17px;
+}
+
+
+.mode span {
+
+    color:
+        var(--ai-secondary);
+
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   EXPLANATION CARD
+========================================================== */
+
+.explanation {
+
+    min-height: 0;
+
+    flex: 1;
+
+    margin-top: 16px;
+
+    padding:
+        22px;
+
+    background:
+        var(--ai-card);
+
+    border:
+        1px solid var(--ai-border);
+
+    border-radius: 16px;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+}
+
+
+/* scrollbar */
+
+.explanation::-webkit-scrollbar {
+
+    width: 7px;
+}
+
+
+.explanation::-webkit-scrollbar-track {
+
+    background:
+        rgba(255,255,255,.03);
+
+    border-radius: 10px;
+}
+
+
+.explanation::-webkit-scrollbar-thumb {
+
+    background:
+        #39445b;
+
+    border-radius: 10px;
+}
+
+
+/* ==========================================================
+   EXPLANATION TEXT
+========================================================== */
+
+.explanation h3 {
+
+    margin:
+        0 0 14px 0;
+
+    font-size: 25px;
+
+    color: white;
+}
+
+
+.explanation p {
+
+    margin: 0;
+
+    color:
+        #c5cede;
+
+    font-size: 17px;
+
+    line-height: 1.5;
+}
+
+
+.ai-result-content {
+
+    white-space: pre-wrap;
+
+    color:
+        #d6deec;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
+   NAVIGATION
+========================================================== */
+
+.navigation {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 12px;
+}
+
+
+.navigation button {
+
+    flex: 1;
+
+    height: 44px;
+
+    padding:
+        0 15px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        #202c40;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+
+.navigation button:hover {
+
+    background:
+        #2c3b54;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ==========================================================
+   CHAT
+========================================================== */
+
+.chat-box {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+
+.chat-box input {
+
+    min-width: 0;
+
+    flex: 1;
+
+    height: 42px;
+
+    padding:
+        0 13px;
+
+    border:
+        1px solid var(--ai-border);
+
+    border-radius: 10px;
+
+    background:
+        #121b2b;
+
+    color: white;
+
+    outline: none;
+}
+
+
+.chat-box input:focus {
+
+    border-color:
+        rgba(22,199,232,.6);
+}
+
+
+.chat-box button {
+
+    height: 42px;
+
+    padding:
+        0 16px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        var(--ai-secondary);
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================================
+   ==========================================================
+   CONSOLE / OUTPUT
+   ==========================================================
+========================================================== */
+
+/*
+   IMPORTANT FIX:
+
+   DO NOT use position: fixed.
+
+   Console is now attached to the editor panel and
+   always remains visible.
+*/
+
+
+.console {
+
+    position: absolute;
+
+    z-index: 50;
+
+    left: 300px;
+
+    right: 390px;
+
+    bottom: 0;
+
+    height: 190px;
+
+    background:
+        var(--console-bg);
+
+    border-top:
+        2px solid var(--console-border);
+
+    padding:
+        10px 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 -8px 25px
+        rgba(0,0,0,.30);
+}
+
+
+/*
+   Because the console is absolute relative to
+   the page, keep it visible above everything.
+*/
+
+body {
+
+    position: relative;
+}
+
+
+/* ==========================================================
+   CONSOLE TITLE
+========================================================== */
+
+.console h3 {
+
+    margin:
+        0 0 4px 0;
+
+    color: white;
+
+    font-size: 19px;
+
+    line-height: 1.2;
+}
+
+
+/* ==========================================================
+   CONSOLE CLEAR BUTTON
+========================================================== */
+
+.console button {
+
+    padding:
+        3px 9px;
+
+    margin-bottom: 4px;
+
+    border:
+        1px solid #333;
+
+    border-radius: 4px;
+
+    background:
+        #111;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+.console button:hover {
+
+    background:
+        #252525;
+}
+
+
+/* ==========================================================
+   PROGRAM INPUT
+========================================================== */
+
+.console textarea {
+
+    width: 220px;
+
+    height: 42px;
+
+    resize: none;
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    padding: 5px;
+
+    background: #ffffff;
+
+    color: #222;
+
+    border: none;
+
+    border-radius: 3px;
+
+    font-family:
+        var(--workspace-font);
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   OUTPUT
+========================================================== */
+
+.console-output {
+
+    height: 72px;
+
+    min-height: 72px;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    padding:
+        4px 2px;
+
+    color:
+        var(--console-text);
+
+    font-family:
+        var(--workspace-font);
+
+    font-size: 14px;
+
+    line-height: 1.35;
+
+    white-space: pre-wrap;
+
+    background:
+        #000;
+}
+
+
+.console-output pre {
+
+    margin: 0;
+
+    padding: 0;
+
+    color:
+        var(--console-text);
+
+    font-family:
+        var(--workspace-font);
+
+    font-size: 14px;
+
+    line-height: 1.35;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
+   RUN RESULT
+========================================================== */
+
+.run-result-output {
+
+    margin: 0;
+
+    padding: 0;
+
+    color:
+        #00ff75;
+
+    font-family:
+        var(--workspace-font);
+
+    white-space: pre-wrap;
+
+    line-height: 1.35;
+}
+
+
+/* ==========================================================
+   CONSOLE SCROLLBAR
+========================================================== */
+
+.console-output::-webkit-scrollbar {
+
+    width: 7px;
+}
+
+
+.console-output::-webkit-scrollbar-track {
+
+    background:
+        #111;
+}
+
+
+.console-output::-webkit-scrollbar-thumb {
+
+    background:
+        #444;
+
+    border-radius: 8px;
+}
+
+
+/* ==========================================================
+   BUTTON DISABLED
+========================================================== */
+
+button:disabled {
+
+    opacity: .55;
+
+    cursor: not-allowed;
+
+    transform: none !important;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1250px) {
+
+    .workspace-container {
+
+        grid-template-columns:
+            240px
+            minmax(0,1fr)
+            340px;
+    }
+
+    .console {
+
+        left: 240px;
+
+        right: 340px;
+    }
+
+    .toolbar select {
+
+        min-width: 140px;
+    }
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1050px) {
+
+    .workspace-container {
+
+        grid-template-columns:
+            220px
+            minmax(0,1fr);
+    }
+
+    .ai-panel {
+
+        display: none;
+    }
+
+    .console {
+
+        left: 220px;
+
+        right: 0;
+    }
+
+    .brand h2 {
+
+        font-size: 20px;
+    }
+
+    .toolbar select {
+
+        min-width: 120px;
+    }
+}
+
+
+/* ==========================================================
+   SMALL SCREEN
+========================================================== */
+
+@media (max-width: 750px) {
+
+    html,
+    body {
+
+        overflow: hidden;
+    }
+
+    .workspace-toolbar {
+
+        padding:
+            0 10px;
+
+        gap: 6px;
+    }
+
+    .workspace-toolbar button {
+
+        padding:
+            0 10px;
+
+        font-size: 12px;
+    }
+
+    .workspace-header {
+
+        padding:
+            0 12px;
+    }
+
+    .brand {
+
+        min-width: auto;
+    }
+
+    .brand h2 {
+
+        font-size: 17px;
+    }
+
+    .toolbar {
+
+        gap: 5px;
+    }
+
+    .toolbar select {
+
+        display: none;
+    }
+
+    .workspace-container {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .file-panel {
+
+        display: none;
+    }
+
+    .console {
+
+        left: 0;
+
+        right: 0;
+
+        height: 175px;
+    }
+}
+
+
+/* ==========================================================
+   VERY SMALL SCREEN
+========================================================== */
+
+@media (max-width: 500px) {
+
+    .workspace-toolbar button {
+
+        padding:
+            0 7px;
+
+        font-size: 11px;
+    }
+
+    .workspace-header {
+
+        height: 62px;
+    }
+
+    :root {
+
+        --header-height: 62px;
+    }
+
+    .brand .logo,
+    .brand .ai-logo {
+
+        width: 42px;
+
+        height: 42px;
+
+        border-radius: 12px;
+    }
+
+    .brand h2 {
+
+        font-size: 15px;
+    }
+
+    .run-btn,
+    .analyze-btn {
+
+        min-width: 80px;
+
+        height: 42px;
+
+        font-size: 13px;
+    }
+
+    .console {
+
+        height: 165px;
+    }
+}
+/* ==========================================================
+   FINAL WORKSPACE FIX
+   - Smaller icons
+   - Compact toolbar
+   - Scrollable Dry Run Console
+   - One-screen layout
+========================================================== */
+
+
+/* ==========================================================
+   1. TOP TOOLBAR
+========================================================== */
+
+.workspace-toolbar {
+    height: 60px;
+    min-height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+    padding: 8px 20px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* Toolbar buttons */
+
+.workspace-toolbar button {
+    height: 42px;
+
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    border-radius: 10px;
+}
+
+
+/* ==========================================================
+   2. REDUCE ICON SIZE
+========================================================== */
+
+/* If your HTML has icon spans */
+
+.workspace-toolbar button .icon,
+.workspace-toolbar button .btn-icon,
+.workspace-toolbar button .toolbar-icon {
+    font-size: 14px !important;
+
+    width: 16px;
+    height: 16px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1;
+}
+
+
+/* General icons inside buttons */
+
+.workspace-toolbar button svg {
+    width: 15px !important;
+    height: 15px !important;
+}
+
+
+/* File icons */
+
+.file svg,
+.file .icon,
+.file .file-icon {
+    width: 16px !important;
+    height: 16px !important;
+
+    font-size: 15px !important;
+}
+
+
+/* ==========================================================
+   3. MAIN WORKSPACE
+========================================================== */
+
+.workspace-container {
+    height: calc(100vh - 140px);
+
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        380px
+        minmax(0, 1fr)
+        490px;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   4. EXPLORER
+========================================================== */
+
+.file-panel {
+    min-height: 0;
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* File names */
+
+.file {
+    font-size: 16px;
+}
+
+
+/* ==========================================================
+   5. EDITOR PANEL
+========================================================== */
+
+.editor-panel {
+    min-width: 0;
+    min-height: 0;
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* Editor */
+
+#monaco-editor {
+    width: 100%;
+    height: 100%;
+
+    min-height: 0;
+}
+
+
+/* ==========================================================
+   6. AI PANEL
+========================================================== */
+
+.ai-panel {
+    min-width: 0;
+    min-height: 0;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* AI explanation should scroll internally */
+
+.explanation {
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+}
+
+
+/* Chrome / Edge scrollbar */
+
+.explanation::-webkit-scrollbar {
+    width: 7px;
+}
+
+.explanation::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.explanation::-webkit-scrollbar-thumb {
+    background: #39445c;
+    border-radius: 10px;
+}
+
+
+/* ==========================================================
+   7. DRY RUN CONSOLE
+========================================================== */
+
+.console {
+    position: fixed;
+
+    left: 380px;
+    right: 490px;
+    bottom: 0;
+
+    height: 220px;
+
+    min-height: 0;
+
+    box-sizing: border-box;
+
+    padding: 12px 20px;
+
+    background: #000;
+
+    border-top: 1px solid #18c8a0;
+
+    z-index: 50;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Console title */
+
+.console h3 {
+    flex-shrink: 0;
+
+    margin: 0 0 5px 0;
+
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+
+/* ==========================================================
+   8. CONSOLE CONTENT SCROLL
+========================================================== */
+
+.console-output {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: auto;
+
+    padding-right: 10px;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    scrollbar-width: thin;
+}
+
+
+/* Console scrollbar */
+
+.console-output::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.console-output::-webkit-scrollbar-track {
+    background: #111;
+}
+
+.console-output::-webkit-scrollbar-thumb {
+    background: #3d475d;
+    border-radius: 10px;
+}
+
+.console-output::-webkit-scrollbar-thumb:hover {
+    background: #59657d;
+}
+
+
+/* ==========================================================
+   9. PROGRAM INPUT
+========================================================== */
+
+.console textarea,
+.console input {
+    flex-shrink: 0;
+
+    max-height: 70px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   10. OUTPUT AREA
+========================================================== */
+
+.console pre {
+    flex: 1;
+
+    min-height: 0;
+
+    margin: 0;
+
+    overflow-y: auto;
+    overflow-x: auto;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* Scrollbar for pre */
+
+.console pre::-webkit-scrollbar {
+    width: 8px;
+}
+
+.console pre::-webkit-scrollbar-track {
+    background: #111;
+}
+
+.console pre::-webkit-scrollbar-thumb {
+    background: #3d475d;
+    border-radius: 10px;
+}
+
+
+/* ==========================================================
+   11. CONSOLE CLEAR BUTTON
+========================================================== */
+
+.console button {
+    width: fit-content;
+
+    padding: 5px 10px;
+
+    font-size: 13px;
+
+    border-radius: 6px;
+}
+
+
+/* ==========================================================
+   12. REMOVE PAGE SCROLL
+========================================================== */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden !important;
+}
+
+
+/* Main application */
+
+.workspace,
+.workspace-container,
+.main-container {
+    min-height: 0;
+    height: 100%;
+}
+
+
+/* ==========================================================
+   13. RESPONSIVE
+========================================================== */
+
+@media (max-width: 1400px) {
+
+    .workspace-container {
+        grid-template-columns:
+            300px
+            minmax(0, 1fr)
+            400px;
+    }
+
+    .console {
+        left: 300px;
+        right: 400px;
+    }
+
+}
+
+
+@media (max-width: 1100px) {
+
+    .workspace-container {
+        grid-template-columns:
+            230px
+            minmax(0, 1fr);
+    }
+
+    .ai-panel {
+        display: none;
+    }
+
+    .console {
+        left: 230px;
+        right: 0;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .workspace-container {
+        grid-template-columns: 1fr;
+    }
+
+    .file-panel {
+        display: none;
+    }
+
+    .console {
+        left: 0;
+        right: 0;
+
+        height: 200px;
+    }
+
+    .workspace-toolbar {
+        gap: 5px;
+        padding: 6px 10px;
+    }
+
+    .workspace-toolbar button {
+        padding: 0 10px;
+        font-size: 13px;
+    }
+
+}
+/* ==========================================================
+   COMPACT UI FIX
+   Reduces oversized Explorer, icons, buttons and spacing
+========================================================== */
+
+/* ---------- GLOBAL ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-size: 14px;
+}
+
+
+/* ==========================================================
+   TOP TOOLBAR
+========================================================== */
+
+.workspace-toolbar {
+    height: 58px;
+    min-height: 58px;
+    padding: 8px 18px;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.workspace-toolbar button {
+    height: 42px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+
+/* ==========================================================
+   MAIN HEADER
+========================================================== */
+
+.workspace-header {
+    height: 82px;
+    min-height: 82px;
+    padding: 0 22px;
+}
+
+.brand {
+    gap: 10px;
+}
+
+.brand h2 {
+    font-size: 22px;
+    margin: 0;
+}
+
+
+/* AI LOGO */
+
+.brand .logo,
+.brand .ai-logo {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    font-size: 22px;
+}
+
+
+/* ==========================================================
+   MAIN WORKSPACE
+========================================================== */
+
+.workspace-container {
+    grid-template-columns: 280px minmax(0, 1fr) 340px;
+
+    height: calc(
+        100vh - 140px
+    );
+
+    min-height: 0;
+}
+
+
+/* ==========================================================
+   EXPLORER
+========================================================== */
+
+.file-panel {
+    width: 280px;
+    padding: 20px 18px;
+    overflow: hidden;
+}
+
+.file-panel h3 {
+    font-size: 24px;
+    margin: 5px 0 22px;
+}
+
+
+/* FILE ROW */
+
+.file {
+    display: flex;
+    align-items: center;
+
+    height: 48px;
+    padding: 8px 12px;
+
+    margin-bottom: 8px;
+
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+
+/* FILE ICON */
+
+.file i,
+.file svg,
+.file img,
+.file .icon {
+    width: 18px !important;
+    height: 18px !important;
+
+    min-width: 18px !important;
+    min-height: 18px !important;
+
+    font-size: 16px !important;
+
+    margin-right: 8px;
+}
+
+
+/* If the icon is an emoji */
+
+.file {
+    font-size: 16px;
+}
+
+
+/* ==========================================================
+   UPLOAD BUTTON
+========================================================== */
+
+.upload-file-btn,
+.upload-btn {
+    height: 52px;
+    min-height: 52px;
+
+    margin-top: 24px;
+
+    padding: 10px 15px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    border-radius: 12px;
+}
+
+
+/* ==========================================================
+   EDITOR
+========================================================== */
+
+.editor-panel {
+    min-width: 0;
+    min-height: 0;
+}
+
+.editor-header {
+    height: 48px;
+    min-height: 48px;
+
+    padding-left: 18px;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.code-area {
+    min-height: 0;
+    padding: 10px;
+}
+
+
+/* Monaco */
+
+#monaco-editor {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+
+/* ==========================================================
+   AI TUTOR
+========================================================== */
+
+.ai-panel {
+    width: 340px;
+    min-width: 0;
+
+    padding: 18px;
+
+    overflow: hidden;
+}
+
+.ai-header {
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.mode {
+    padding: 12px;
+    font-size: 14px;
+}
+
+.explanation {
+    margin-top: 14px;
+    padding: 16px;
+
+    min-height: 0;
+
+    overflow-y: auto;
+}
+
+
+/* ==========================================================
+   DRY RUN CONSOLE
+========================================================== */
+
+.console {
+    position: fixed;
+
+    left: 280px;
+    right: 340px;
+    bottom: 0;
+
+    height: 190px;
+
+    padding: 10px 18px;
+
+    overflow: hidden;
+
+    z-index: 20;
+}
+
+
+/* Console title */
+
+.console h3 {
+    font-size: 17px;
+    margin: 0 0 4px;
+}
+
+
+/* Clear button */
+
+.console button {
+    padding: 4px 10px;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+
+/* Input / output headings */
+
+.console label,
+.console h4,
+.console .console-title {
+    font-size: 15px;
+}
+
+
+/* ==========================================================
+   DRY RUN OUTPUT SCROLL
+========================================================== */
+
+.console-output {
+    height: 65px;
+
+    max-height: 65px;
+
+    overflow-y: auto;
+    overflow-x: auto;
+
+    padding: 6px 4px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+
+    scrollbar-width: thin;
+}
+
+
+/* Program input */
+
+.console textarea,
+.console input {
+    width: 280px;
+
+    max-width: 100%;
+
+    height: 45px;
+
+    max-height: 45px;
+
+    resize: vertical;
+
+    font-size: 14px;
+
+    padding: 6px;
+}
+
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+.console-output::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+.console-output::-webkit-scrollbar-track {
+    background: #111827;
+}
+
+.console-output::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 10px;
+}
+
+.console-output::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
+}
+
+
+/* ==========================================================
+   TOOLBAR RIGHT SIDE
+========================================================== */
+
+.toolbar {
+    gap: 10px;
+}
+
+.toolbar select {
+    height: 46px;
+    min-width: 150px;
+
+    padding: 0 14px;
+
+    font-size: 15px;
+}
+
+.run-btn,
+.analyze-btn {
+    height: 46px;
+
+    padding: 0 18px;
+
+    font-size: 15px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .workspace-container {
+        grid-template-columns:
+            240px
+            minmax(0, 1fr)
+            300px;
+    }
+
+    .file-panel {
+        width: 240px;
+    }
+
+    .ai-panel {
+        width: 300px;
+    }
+
+    .console {
+        left: 240px;
+        right: 300px;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .workspace-toolbar {
+        overflow-x: auto;
+    }
+
+    .workspace-container {
+        grid-template-columns:
+            220px
+            minmax(0, 1fr);
+    }
+
+    .ai-panel {
+        display: none;
+    }
+
+    .file-panel {
+        width: 220px;
+    }
+
+    .console {
+        left: 220px;
+        right: 0;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .file-panel {
+        display: none;
+    }
+
+    .workspace-container {
+        grid-template-columns: 1fr;
+    }
+
+    .console {
+        left: 0;
+        right: 0;
+    }
+
+    .brand h2 {
+        font-size: 18px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   FINAL WORKSPACE SIZE FIX
+   Smaller Explorer + compact icons + visible console
+========================================================== */
+
+/* ---------- GLOBAL ---------- */
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+
+/* ---------- TOP TOOLBAR ---------- */
+
+.workspace-toolbar {
+    height: 58px;
+    min-height: 58px;
+    padding: 0 18px;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+.workspace-toolbar button {
+    padding: 8px 14px;
+    font-size: 13px;
+}
+
+
+/* ---------- MAIN HEADER ---------- */
+
+.workspace-header {
+    height: 68px;
+    min-height: 68px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.brand {
+    gap: 10px;
+}
+
+.brand h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
+
+/* ---------- SMALL AI LOGO ---------- */
+
+.brand .logo,
+.brand .ai-logo,
+.logo {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    font-size: 20px;
+}
+
+
+/* ---------- MAIN WORKSPACE ---------- */
+
+.workspace-container {
+    display: grid;
+
+    /* Explorer | Editor | AI Tutor */
+    grid-template-columns: 260px minmax(0, 1fr) 360px;
+
+    height: calc(100vh - 126px);
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   EXPLORER
+========================================================== */
+
+.file-panel {
+    width: auto;
+    min-width: 0;
+
+    padding: 18px 16px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+.file-panel h3 {
+    font-size: 22px;
+    margin: 0 0 18px;
+}
+
+
+/* FILE ITEMS */
+
+.file {
+    display: flex;
+    align-items: center;
+
+    height: 42px;
+
+    padding: 0 12px;
+    margin-bottom: 6px;
+
+    font-size: 15px;
+
+    border-radius: 9px;
+
+    box-sizing: border-box;
+}
+
+
+/* SMALL FILE ICON */
+
+.file::first-letter {
+    font-size: 14px;
+}
+
+
+/* UPLOAD BUTTON */
+
+.upload-file-btn,
+.upload-btn {
+    width: 100%;
+
+    height: 48px;
+    min-height: 48px;
+
+    margin: 20px 0 0;
+
+    padding: 10px 14px;
+
+    font-size: 14px;
+
+    border-radius: 11px;
+}
+
+
+/* ==========================================================
+   EDITOR
+========================================================== */
+
+.editor-panel {
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+.editor-header {
+    height: 46px;
+    min-height: 46px;
+
+    padding-left: 18px;
+
+    font-size: 15px;
+}
+
+
+/* Monaco */
+
+#monaco-editor {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ==========================================================
+   AI TUTOR
+========================================================== */
+
+.ai-panel {
+    min-width: 0;
+    min-height: 0;
+
+    padding: 16px;
+
+    overflow: hidden;
+}
+
+.ai-header {
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+.mode {
+    padding: 11px;
+}
+
+.explanation {
+    margin-top: 14px;
+    padding: 16px;
+
+    min-height: 0;
+
+    overflow-y: auto;
+}
+
+.navigation {
+    margin-top: 10px;
+}
+
+.navigation button {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   DRY RUN CONSOLE
+========================================================== */
+
+.console {
+    position: fixed;
+
+    left: 260px;
+    right: 360px;
+
+    bottom: 0;
+
+    height: 220px;
+    min-height: 220px;
+
+    padding: 12px 18px;
+
+    box-sizing: border-box;
+
+    background: var(--console-bg, #050505);
+
+    border-top: 2px solid var(--console-border, #20d878);
+
+    z-index: 50;
+
+    overflow: hidden;
+}
+
+
+/* Console title */
+
+.console h3 {
+    margin: 0 0 6px;
+
+    font-size: 17px;
+}
+
+
+/* Console content scroll */
+
+.console-output {
+    height: 125px;
+
+    max-height: 125px;
+
+    overflow-y: auto;
+    overflow-x: auto;
+
+    padding-right: 8px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+}
+
+
+/* ==========================================================
+   PROGRAM INPUT
+========================================================== */
+
+.console textarea,
+.console input {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   CUSTOM SCROLLBAR
+========================================================== */
+
+.console-output::-webkit-scrollbar,
+.explanation::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+.console-output::-webkit-scrollbar-track,
+.explanation::-webkit-scrollbar-track {
+    background: #111827;
+}
+
+.console-output::-webkit-scrollbar-thumb,
+.explanation::-webkit-scrollbar-thumb {
+    background: #39445a;
+    border-radius: 10px;
+}
+
+.console-output::-webkit-scrollbar-thumb:hover,
+.explanation::-webkit-scrollbar-thumb:hover {
+    background: #59677f;
+}
+
+
+/* ==========================================================
+   IMPORTANT: REMOVE OLD PAGE SCROLL
+========================================================== */
+
+.workspace,
+.workspace-container,
+.editor-panel,
+.ai-panel,
+.file-panel {
+    max-height: none;
+}
+
+
+/* ==========================================================
+   SCREEN SIZE
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .workspace-container {
+        grid-template-columns: 220px minmax(0, 1fr);
+    }
+
+    .ai-panel {
+        display: none;
+    }
+
+    .console {
+        left: 220px;
+        right: 0;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .workspace-container {
+        grid-template-columns: 1fr;
+    }
+
+    .file-panel {
+        display: none;
+    }
+
+    .console {
+        left: 0;
+        right: 0;
+        height: 200px;
+    }
+}
+/* ==========================================================
+   DRY RUN CONSOLE — FINAL FIX
+========================================================== */
+
+.console {
+    position: fixed;
+
+    left: 260px;
+    right: 360px;
+    bottom: 0;
+
+    height: 220px;
+    min-height: 220px;
+
+    padding: 10px 18px;
+
+    background: #000;
+    border-top: 2px solid #16c784;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    z-index: 100;
+}
+
+
+/* ---------- Console Header ---------- */
+
+.console h3 {
+    flex-shrink: 0;
+
+    margin: 0 0 4px;
+
+    color: #fff;
+
+    font-size: 17px;
+    line-height: 22px;
+}
+
+
+/* ---------- Clear Button ---------- */
+
+.console button {
+    flex-shrink: 0;
+
+    width: fit-content;
+
+    padding: 3px 10px;
+
+    margin-bottom: 4px;
+
+    font-size: 13px;
+
+    border-radius: 5px;
+}
+
+
+/* ---------- Program Input ---------- */
+
+.console textarea {
+    flex-shrink: 0;
+
+    width: 280px;
+    max-width: 100%;
+
+    height: 42px;
+    min-height: 42px;
+
+    padding: 5px 7px;
+
+    resize: none;
+
+    font-family: monospace;
+    font-size: 13px;
+
+    box-sizing: border-box;
+}
+
+
+/* ---------- Output Title ---------- */
+
+.console .output-title,
+.console h4 {
+    flex-shrink: 0;
+
+    margin: 3px 0;
+
+    color: #fff;
+
+    font-size: 15px;
+}
+
+
+/* ==========================================================
+   OUTPUT AREA
+   ONLY THIS AREA SCROLLS
+========================================================== */
+
+.console-output {
+    flex: 1;
+
+    min-height: 0;
+
+    width: 100%;
+
+    overflow-y: auto;
+    overflow-x: auto;
+
+    padding: 4px 8px 8px 4px;
+
+    color: #00ff66;
+
+    background: #000;
+
+    font-family: "Consolas", "Courier New", monospace;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   CONSOLE SCROLLBAR
+========================================================== */
+
+.console-output::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.console-output::-webkit-scrollbar-track {
+    background: #111;
+}
+
+.console-output::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 8px;
+}
+
+.console-output::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+
+/* ==========================================================
+   INPUT SCROLLBAR
+========================================================== */
+
+.console textarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+.console textarea::-webkit-scrollbar-thumb {
+    background: #777;
+    border-radius: 6px;
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .console {
+        left: 220px;
+        right: 0;
+    }
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .console {
+        left: 0;
+        right: 0;
+
+        height: 210px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   DRY RUN OUTPUT
+========================================================== */
+
+.console-output {
+    overflow-y: auto !important;
+    overflow-x: auto !important;
+
+    max-height: none !important;
+
+    min-height: 0;
+
+    scroll-behavior: smooth;
+}
+
+
+.run-result-output {
+    margin: 0;
+
+    padding: 4px;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    font-family:
+        "Consolas",
+        "Courier New",
+        monospace;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+
+
+
+
+
+
+/* ==========================================================
+   DRY RUN CONSOLE - CLEAN UI
+========================================================== */
+
+.console {
+    background: #050505;
+    border-top: 1px solid #18dca0;
+    padding: 16px 24px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* Console title */
+.console h3 {
+    margin: 0 0 14px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #f5f7fa;
+}
+
+/* Remove Clear button */
+.console button,
+.console .clear-btn,
+.console #clearConsole,
+.console #clearBtn {
+    display: none !important;
+}
+
+/* Input section */
+.console label,
+.console .input-title {
+    display: block;
+    margin-bottom: 8px;
+    color: #e5e7eb;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Program input */
+.console textarea,
+.console input[type="text"] {
+    width: 100%;
+    max-width: 100%;
+    min-height: 50px;
+    padding: 12px 14px;
+
+    box-sizing: border-box;
+
+    background: #111827;
+    color: #d1d5db;
+
+    border: 3px solid #374151;
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family: var(--workspace-font, monospace);
+    font-size: 14px;
+
+    resize: vertical;
+}
+
+.console textarea:focus,
+.console input[type="text"]:focus {
+    border-color: #18dca0;
+}
+
+/* Output title */
+.console .output-title {
+    margin-top: 14px;
+    margin-bottom: 8px;
+
+    color: #e5e7eb;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Output area */
+.console-output {
+    width: 100%;
+    min-height: 55px;
+
+    padding: 12px 14px;
+
+    box-sizing: border-box;
+
+    background: #050505;
+    color: #00ff88;
+
+    border-radius: 8px;
+
+    font-family: var(--workspace-font, monospace);
+    font-size: 14px;
+    line-height: 1.6;
+
+    overflow-x: auto;
+    overflow-y: auto;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Scrollbar */
+.console::-webkit-scrollbar,
+.console-output::-webkit-scrollbar,
+.console textarea::-webkit-scrollbar {
+    width: 7px;
+}
+
+.console::-webkit-scrollbar-track,
+.console-output::-webkit-scrollbar-track,
+.console textarea::-webkit-scrollbar-track {
+    background: #0b0b0b;
+}
+
+.console::-webkit-scrollbar-thumb,
+.console-output::-webkit-scrollbar-thumb,
+.console textarea::-webkit-scrollbar-thumb {
+    background: #303030;
+    border-radius: 10px;
+}
+
+.console::-webkit-scrollbar-thumb:hover,
+.console-output::-webkit-scrollbar-thumb:hover,
+.console textarea::-webkit-scrollbar-thumb:hover {
+    background: #4b4b4b;
+}
+
+
+
+
+
+
+
+
+

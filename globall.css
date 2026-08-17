@@ -1,0 +1,341 @@
+/* ==========================================================
+   AI CODE TUTOR STUDIO
+   Authentication Global Styles
+========================================================== */
+
+
+/* ===============================
+   RESET
+================================ */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+
+body{
+
+    min-height:100vh;
+
+    font-family:var(--font-main);
+
+    background:var(--auth-bg-primary);
+
+    color:var(--text-primary);
+
+    overflow-x:hidden;
+
+}
+
+
+
+
+/* ===============================
+   HEADINGS
+================================ */
+
+
+h1,
+h2,
+h3,
+h4{
+
+    font-weight:700;
+
+    line-height:1.2;
+
+}
+
+
+
+p{
+
+    line-height:1.6;
+
+    color:var(--text-secondary);
+
+}
+
+
+
+
+
+/* ===============================
+   LINKS
+================================ */
+
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+
+
+/* ===============================
+   BUTTON SYSTEM
+================================ */
+
+
+button{
+
+    font-family:inherit;
+
+    cursor:pointer;
+
+    border:none;
+
+    outline:none;
+
+}
+
+
+
+.primary-btn{
+
+    padding:15px 28px;
+
+    border-radius:var(--btn-radius);
+
+    background:var(--btn-gradient);
+
+    color:white;
+
+    font-weight:600;
+
+    font-size:15px;
+
+    transition:var(--transition);
+
+    box-shadow:
+
+    0 10px 30px rgba(99,102,241,.25);
+
+}
+
+
+
+.primary-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+    0 15px 35px rgba(99,102,241,.4);
+
+}
+
+
+
+
+/* ===============================
+   LOGO
+================================ */
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+
+.logo-icon{
+
+
+    width:48px;
+
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    border-radius:14px;
+
+
+    background:var(--btn-gradient);
+
+
+    font-weight:800;
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+}
+
+
+
+
+
+/* ===============================
+   INPUT RESET
+================================ */
+
+
+input{
+
+    font-family:inherit;
+
+}
+
+
+
+input::placeholder{
+
+    color:#64748b;
+
+}
+
+
+
+
+
+/* ===============================
+   GLASS CARD
+================================ */
+
+
+.glass-card{
+
+    background:var(--glass-bg);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(25px);
+
+    box-shadow:var(--glass-shadow);
+
+}
+
+
+
+
+
+/* ===============================
+   SCROLLBAR
+================================ */
+
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+
+
+::-webkit-scrollbar-track{
+
+    background:#020617;
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+    background:#6366f1;
+
+    border-radius:20px;
+
+}
+
+
+
+
+
+/* ===============================
+   ANIMATION HELPERS
+================================ */
+
+
+.fade-in{
+
+    animation:fadeIn .6s ease forwards;
+
+}
+
+
+
+@keyframes fadeIn{
+
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+
+}
+
+
+
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+
+@media(max-width:600px){
+
+
+    h1{
+
+        font-size:2rem;
+
+    }
+
+
+    .primary-btn{
+
+        width:100%;
+
+    }
+
+
+}

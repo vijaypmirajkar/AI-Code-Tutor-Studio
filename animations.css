@@ -1,0 +1,540 @@
+/* ==========================================================
+   AI CODE TUTOR STUDIO
+   animations.css
+   Premium Animations & Effects
+========================================================== */
+
+/* ===============================
+   GLOBAL TRANSITIONS
+================================= */
+
+*,
+*::before,
+*::after{
+    transition:
+        background-color .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        transform .35s ease,
+        opacity .35s ease,
+        box-shadow .35s ease;
+}
+
+/* ===============================
+   PAGE LOADER
+================================= */
+
+body{
+    animation:pageFade .8s ease;
+}
+
+@keyframes pageFade{
+
+    from{
+
+        opacity:0;
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===============================
+   FADE ANIMATIONS
+================================= */
+
+.fade-up{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+}
+
+.fade-down{
+
+    opacity:0;
+
+    transform:translateY(-60px);
+
+}
+
+.fade-left{
+
+    opacity:0;
+
+    transform:translateX(-80px);
+
+}
+
+.fade-right{
+
+    opacity:0;
+
+    transform:translateX(80px);
+
+}
+
+.fade-scale{
+
+    opacity:0;
+
+    transform:scale(.85);
+
+}
+
+/* Final State */
+
+.animate{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+/* ===============================
+   FLOATING
+================================= */
+
+@keyframes floating{
+
+    0%{
+
+        transform:
+        translateY(0px);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-18px);
+
+    }
+
+    100%{
+
+        transform:
+        translateY(0px);
+
+    }
+
+}
+
+.float{
+
+    animation:
+    floating 6s ease-in-out infinite;
+
+}
+
+/* ===============================
+   AURORA BLOBS
+================================= */
+
+@keyframes blobOne{
+
+    0%{
+
+        transform:
+        translate(0,0)
+        scale(1);
+
+    }
+
+    50%{
+
+        transform:
+        translate(80px,50px)
+        scale(1.2);
+
+    }
+
+    100%{
+
+        transform:
+        translate(-60px,80px)
+        scale(.95);
+
+    }
+
+}
+
+@keyframes blobTwo{
+
+    0%{
+
+        transform:
+        translate(0,0)
+        scale(1);
+
+    }
+
+    50%{
+
+        transform:
+        translate(-90px,-40px)
+        scale(1.25);
+
+    }
+
+    100%{
+
+        transform:
+        translate(70px,-60px)
+        scale(.9);
+
+    }
+
+}
+
+/* ===============================
+   HERO TITLE
+================================= */
+
+.hero h1{
+
+    animation:
+    titleReveal
+    .9s ease;
+
+}
+
+@keyframes titleReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+        translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+/* ===============================
+   BUTTON SHINE
+================================= */
+
+.primary-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.primary-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-140%;
+
+    width:120%;
+
+    height:100%;
+
+    background:
+
+    linear-gradient(
+
+    120deg,
+
+    transparent,
+
+    rgba(255,255,255,.5),
+
+    transparent
+
+    );
+
+}
+
+.primary-btn:hover::before{
+
+    left:140%;
+
+    transition:1s;
+
+}
+
+/* ===============================
+   FEATURE CARD
+================================= */
+
+.feature-card{
+
+    transform:translateY(0);
+
+}
+
+.feature-card:hover{
+
+    transform:
+
+    translateY(-12px);
+
+    box-shadow:
+
+    0 20px 60px rgba(0,0,0,.35);
+
+}
+
+/* ===============================
+   ICON ANIMATION
+================================= */
+
+.feature-card .icon{
+
+    transition:.4s;
+
+}
+
+.feature-card:hover .icon{
+
+    transform:
+
+    rotate(10deg)
+    scale(1.15);
+
+}
+
+/* ===============================
+   CODE WINDOW
+================================= */
+
+.editor-card{
+
+    animation:
+
+    floating 7s ease-in-out infinite;
+
+}
+
+.editor-card:hover{
+
+    transform:
+
+    rotate(0deg)
+
+    scale(1.03);
+
+}
+
+/* ===============================
+   PROGRESS BAR
+================================= */
+
+.progress-bar{
+
+    animation:
+
+    progressMove
+
+    2.5s ease forwards;
+
+}
+
+@keyframes progressMove{
+
+    from{
+
+        width:0;
+
+    }
+
+    to{
+
+        width:65%;
+
+    }
+
+}
+
+/* ===============================
+   NAVBAR
+================================= */
+
+.navbar{
+
+    animation:
+
+    navbarDrop
+
+    .7s ease;
+
+}
+
+@keyframes navbarDrop{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+        translateY(-40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+/* ===============================
+   BADGE PULSE
+================================= */
+
+.badge{
+
+    animation:
+
+    pulseGlow
+
+    3s infinite;
+
+}
+
+@keyframes pulseGlow{
+
+    0%{
+
+        box-shadow:
+
+        0 0 0 rgba(99,102,241,0);
+
+    }
+
+    50%{
+
+        box-shadow:
+
+        0 0 30px rgba(99,102,241,.4);
+
+    }
+
+    100%{
+
+        box-shadow:
+
+        0 0 0 rgba(99,102,241,0);
+
+    }
+
+}
+
+/* ===============================
+   CTA BUTTON
+================================= */
+
+.cta .primary-btn{
+
+    animation:
+
+    floating 4s ease-in-out infinite;
+
+}
+
+/* ===============================
+   FOOTER
+================================= */
+
+footer{
+
+    animation:
+
+    pageFade 1.2s ease;
+
+}
+
+/* ===============================
+   SCROLL REVEAL CLASS
+================================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(70px);
+
+}
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+/* ===============================
+   GLASS HOVER
+================================= */
+
+.glass:hover{
+
+    backdrop-filter:blur(30px);
+
+    transform:
+
+    translateY(-6px);
+
+}
+
+/* ===============================
+   SCROLLBAR
+================================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#0f172a;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4f46e5;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#6366f1;
+
+}

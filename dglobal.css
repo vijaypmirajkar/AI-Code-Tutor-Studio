@@ -1,0 +1,973 @@
+/* ==========================================================
+   AI CODE TUTOR STUDIO
+   dglobal.css
+========================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    font-family: "Inter", sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(99, 102, 241, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(6, 182, 212, 0.08),
+            transparent 30%
+        ),
+        var(--bg-main);
+
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+}
+
+::selection {
+    background: rgba(99, 102, 241, 0.35);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050816;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3730a3;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
+}
+
+
+/* ==========================================================
+   PRIMARY BUTTON
+========================================================== */
+
+.primary-btn {
+
+    padding: 13px 22px;
+
+    border-radius: 13px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--cyan)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(99, 102, 241, 0.2);
+
+    transition: var(--transition);
+}
+
+.primary-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 35px rgba(99, 102, 241, 0.35);
+}
+
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
+.sidebar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 245px;
+
+    padding: 28px 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(15, 23, 42, 0.97),
+            rgba(7, 11, 22, 0.98)
+        );
+
+    border-right:
+        1px solid var(--border);
+
+    z-index: 100;
+
+    overflow-y: auto;
+}
+
+
+/* ==========================================================
+   LOGO
+========================================================== */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 0 8px;
+
+    margin-bottom: 42px;
+}
+
+.logo-icon {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--cyan)
+        );
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.logo h2 {
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+}
+
+
+/* ==========================================================
+   SIDEBAR NAVIGATION
+========================================================== */
+
+.sidebar nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.sidebar nav a {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 14px;
+
+    border-radius: 12px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    transition: var(--transition);
+}
+
+.sidebar nav a:hover {
+
+    color: white;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    transform: translateX(3px);
+}
+
+.sidebar nav a.active {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(99, 102, 241, 0.2),
+            rgba(99, 102, 241, 0.06)
+        );
+
+    border:
+        1px solid rgba(99, 102, 241, 0.15);
+}
+
+.sidebar nav a.active::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -18px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 3px;
+
+    height: 25px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--primary),
+            var(--cyan)
+        );
+}
+
+
+/* ==========================================================
+   LOGOUT
+========================================================== */
+
+.logout-btn {
+
+    margin-top: auto;
+
+    width: 100%;
+
+    padding: 13px;
+
+    border-radius: 12px;
+
+    color: #fca5a5;
+
+    background:
+        rgba(239, 68, 68, 0.07);
+
+    border:
+        1px solid rgba(239, 68, 68, 0.12);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+.logout-btn:hover {
+
+    color: white;
+
+    background:
+        rgba(239, 68, 68, 0.16);
+
+    border-color:
+        rgba(239, 68, 68, 0.3);
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================================
+   MAIN
+========================================================== */
+
+.main {
+
+    margin-left: 245px;
+
+    min-height: 100vh;
+
+    padding: 35px 42px 60px;
+
+    width: calc(100% - 245px);
+}
+
+
+/* ==========================================================
+   TOPBAR
+========================================================== */
+
+.topbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 35px;
+}
+
+.topbar h1 {
+
+    font-size: 29px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.7px;
+
+    margin-bottom: 7px;
+}
+
+.topbar p {
+
+    font-size: 14px;
+}
+
+
+/* ==========================================================
+   STATS GRID
+========================================================== */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 42px;
+}
+
+
+/*
+   Your HTML only contains .stat-number.
+   Make each stat visually like a card.
+*/
+
+.stats-grid > div {
+
+    min-height: 125px;
+
+    padding: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-radius: var(--radius-md);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.18);
+
+    backdrop-filter: blur(18px);
+
+    transition: var(--transition);
+}
+
+.stats-grid > div:hover {
+
+    transform: translateY(-4px);
+
+    border-color:
+        var(--border-hover);
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,0.28);
+}
+
+.stat-number {
+
+    font-size: 32px;
+
+    font-weight: 800;
+
+    color: white;
+
+    letter-spacing: -1px;
+}
+
+.stat-number::after {
+
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    color: var(--text-muted);
+
+    letter-spacing: 0;
+
+}
+
+.stat-number[data-stat="projects"]::after {
+    content: "Projects";
+}
+
+.stat-number[data-stat="concepts"]::after {
+    content: "Concepts Learned";
+}
+
+.stat-number[data-stat="learning-time"]::after {
+    content: "Learning Time";
+}
+
+.stat-number[data-stat="progress"]::after {
+    content: "Overall Progress";
+}
+
+
+/* ==========================================================
+   SECTIONS
+========================================================== */
+
+.main section {
+
+    margin-bottom: 42px;
+}
+
+.section-title {
+
+    margin-bottom: 18px;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+}
+
+
+/* ==========================================================
+   PROJECT GRID
+========================================================== */
+
+.project-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* ==========================================================
+   LEARNING CARD
+========================================================== */
+
+.learning-card {
+
+    position: relative;
+
+    min-height: 190px;
+
+    padding: 24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    border-radius: var(--radius-lg);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid var(--border);
+
+    backdrop-filter: blur(18px);
+
+    overflow: hidden;
+
+    transition: var(--transition);
+}
+
+.learning-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    top: -70px;
+    right: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(99, 102, 241, 0.15);
+
+    filter: blur(20px);
+}
+
+.learning-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(99, 102, 241, 0.35);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.28);
+}
+
+.learning-title {
+
+    font-size: 17px;
+
+    font-weight: 650;
+
+    margin-bottom: 8px;
+}
+
+.learning-step {
+
+    font-size: 13px;
+
+    color: var(--text-muted);
+}
+
+
+/* ==========================================================
+   CONTINUE BUTTON
+========================================================== */
+
+.continue-btn {
+
+    align-self: flex-start;
+
+    margin-top: 18px;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    color: white;
+
+    background:
+        rgba(99, 102, 241, 0.12);
+
+    border:
+        1px solid rgba(99, 102, 241, 0.22);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+.continue-btn:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--cyan)
+        );
+
+    border-color: transparent;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================================
+   AI SUGGESTIONS
+========================================================== */
+
+.suggestion-card {
+
+    position: relative;
+
+    padding: 18px 22px;
+
+    margin-bottom: 12px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(99, 102, 241, 0.055);
+
+    border:
+        1px solid rgba(99, 102, 241, 0.12);
+
+    transition: var(--transition);
+}
+
+.suggestion-card:hover {
+
+    transform: translateX(4px);
+
+    background:
+        rgba(99, 102, 241, 0.09);
+
+    border-color:
+        rgba(99, 102, 241, 0.25);
+}
+
+.suggestion-card p {
+
+    color: #cbd5e1;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================================
+   HISTORY TABLE
+========================================================== */
+
+.history-table {
+
+    width: 100%;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border:
+        1px solid var(--border);
+}
+
+.history-table th {
+
+    padding: 16px 20px;
+
+    text-align: left;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.history-table td {
+
+    padding: 17px 20px;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.05);
+}
+
+.history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.history-table tbody tr {
+
+    transition: var(--transition);
+}
+
+.history-table tbody tr:hover {
+
+    background:
+        rgba(255,255,255,0.035);
+}
+
+
+/* Status column */
+
+.history-table td:last-child {
+
+    color: var(--success);
+
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   RESPONSIVE - TABLET
+========================================================== */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        width: 215px;
+    }
+
+    .main {
+
+        margin-left: 215px;
+
+        width: calc(100% - 215px);
+
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .project-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE - MOBILE
+========================================================== */
+
+@media (max-width: 760px) {
+
+    .sidebar {
+
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+
+        min-height: auto;
+
+        padding: 18px;
+
+        border-right: none;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+    .logo {
+
+        margin-bottom: 18px;
+    }
+
+    .sidebar nav {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 6px;
+    }
+
+    .sidebar nav a {
+
+        padding: 11px;
+
+        font-size: 13px;
+    }
+
+    .sidebar nav a.active::before {
+        display: none;
+    }
+
+    .logout-btn {
+
+        margin-top: 18px;
+    }
+
+    .main {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 25px 18px 45px;
+    }
+
+    .topbar {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .topbar h1 {
+
+        font-size: 25px;
+    }
+
+    .primary-btn {
+
+        width: 100%;
+    }
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .stats-grid > div {
+
+        min-height: 105px;
+
+        padding: 18px;
+    }
+
+    .stat-number {
+
+        font-size: 25px;
+    }
+
+    .project-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 450px) {
+
+    .sidebar nav {
+
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .history-table {
+
+        display: block;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+    }
+
+    .topbar h1 {
+
+        font-size: 22px;
+    }
+
+    .section-title {
+
+        font-size: 18px;
+    }
+
+}
