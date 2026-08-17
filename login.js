@@ -5,31 +5,48 @@
 
 "use strict";
 
-const form = document.getElementById("loginForm");
 
-const API_URL = "https://ai-code-tutor-studio.onrender.com";
+// =========================================================
+// CONFIG
+// =========================================================
+
+const API_URL =
+    "https://ai-code-tutor-studio.onrender.com";
+
+const GOOGLE_CLIENT_ID =
+    "221221986548-23g9vo9mm06mtuo6hhohsmg8ujseudh5.apps.googleusercontent.com";
 
 
 // =========================================================
-// NORMAL EMAIL LOGIN
+// EMAIL LOGIN
 // =========================================================
+
+const form =
+    document.getElementById("loginForm");
+
 
 if (form) {
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", async function (e) {
 
         e.preventDefault();
 
         const email =
-            document.getElementById("email").value.trim();
+            document.getElementById("email")
+                .value
+                .trim();
 
         const password =
-            document.getElementById("password").value.trim();
+            document.getElementById("password")
+                .value
+                .trim();
 
 
         if (!email || !password) {
 
-            alert("Please enter email and password.");
+            alert(
+                "Please enter email and password."
+            );
 
             return;
         }
@@ -37,24 +54,38 @@ if (form) {
 
         try {
 
-            const response = await fetch(
-                `${API_URL}/auth/login`,
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                }
+            console.log(
+                "EMAIL LOGIN → BACKEND"
             );
 
 
-            const data = await response.json();
+            const response =
+                await fetch(
+                    `${API_URL}/auth/login`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            console.log(
+                "EMAIL LOGIN RESPONSE:",
+                data
+            );
 
 
             if (!response.ok) {
@@ -68,9 +99,7 @@ if (form) {
             }
 
 
-            // =================================================
-            // SAVE AUTHENTICATION
-            // =================================================
+            // SAVE TOKEN
 
             localStorage.setItem(
                 "access_token",
@@ -78,31 +107,34 @@ if (form) {
             );
 
 
+            // SAVE USER
+
             localStorage.setItem(
                 "user",
-                JSON.stringify(data.user)
+                JSON.stringify(
+                    data.user
+                )
             );
 
-
-            // =================================================
-            // GO TO DASHBOARD
-            // =================================================
 
             console.log(
-                "LOGIN SUCCESS → DASHBOARD"
+                "EMAIL LOGIN SUCCESS"
             );
 
 
-            window.location.replace(
-                "dashboard.html"
-            );
+            // IMPORTANT:
+            // login.html is inside auth folder
+            // dashboard.html is inside dashboard folder
+
+            window.location.href =
+                "../dashboard/dashboard.html";
 
         }
 
         catch (error) {
 
             console.error(
-                "LOGIN ERROR:",
+                "EMAIL LOGIN ERROR:",
                 error
             );
 
@@ -118,13 +150,13 @@ if (form) {
 
 
 // =========================================================
-// GOOGLE LOGIN
+// GOOGLE LOGIN CALLBACK
 // =========================================================
 
 function handleGoogleLogin(response) {
 
     console.log(
-        "Google credential received"
+        "GOOGLE CREDENTIAL RECEIVED"
     );
 
 
@@ -132,6 +164,11 @@ function handleGoogleLogin(response) {
         !response ||
         !response.credential
     ) {
+
+        console.error(
+            "Google credential missing",
+            response
+        );
 
         alert(
             "Google login failed."
@@ -149,7 +186,7 @@ function handleGoogleLogin(response) {
 
 
 // =========================================================
-// GOOGLE BACKEND LOGIN
+// SEND GOOGLE CREDENTIAL TO RENDER
 // =========================================================
 
 async function loginWithGoogle(
@@ -158,22 +195,28 @@ async function loginWithGoogle(
 
     try {
 
-        const response = await fetch(
-            `${API_URL}/auth/google`,
-            {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    credential: credential
-                })
-
-            }
+        console.log(
+            "Sending Google credential to Render..."
         );
+
+
+        const response =
+            await fetch(
+                `${API_URL}/auth/google`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        credential:
+                            credential
+                    })
+                }
+            );
 
 
         const data =
@@ -181,12 +224,18 @@ async function loginWithGoogle(
 
 
         console.log(
-            "Google backend response:",
+            "GOOGLE BACKEND RESPONSE:",
             data
         );
 
 
         if (!response.ok) {
+
+            console.error(
+                "GOOGLE BACKEND ERROR:",
+                data
+            );
+
 
             alert(
                 data.detail ||
@@ -213,7 +262,14 @@ async function loginWithGoogle(
 
         localStorage.setItem(
             "user",
-            JSON.stringify(data.user)
+            JSON.stringify(
+                data.user
+            )
+        );
+
+
+        console.log(
+            "GOOGLE LOGIN SUCCESS"
         );
 
 
@@ -221,14 +277,8 @@ async function loginWithGoogle(
         // GO TO DASHBOARD
         // =================================================
 
-        console.log(
-            "GOOGLE LOGIN SUCCESS → DASHBOARD"
-        );
-
-
-        window.location.replace(
-            "dashboard.html"
-        );
+        window.location.href =
+            "../dashboard/dashboard.html";
 
     }
 
@@ -238,6 +288,7 @@ async function loginWithGoogle(
             "GOOGLE LOGIN ERROR:",
             error
         );
+
 
         alert(
             "Unable to connect to authentication server."
@@ -249,66 +300,147 @@ async function loginWithGoogle(
 
 
 // =========================================================
-// GOOGLE SIGN-IN INITIALIZATION
+// INITIALIZE GOOGLE IDENTITY SERVICES
 // =========================================================
 
 function initializeGoogleLogin() {
+
+    console.log(
+        "Initializing Google Login..."
+    );
+
 
     if (
         typeof google === "undefined" ||
         !google.accounts ||
         !google.accounts.id
     ) {
-        console.log("Google Identity Services loading...");
+
+        console.log(
+            "Google Identity Services not ready..."
+        );
+
 
         setTimeout(
             initializeGoogleLogin,
             500
         );
 
+
         return;
     }
+
 
     const googleButton =
-        document.getElementById("googleButton");
+        document.getElementById(
+            "customGoogleButton"
+        );
+
 
     if (!googleButton) {
-        console.error("Google button container not found.");
+
+        console.error(
+            "Custom Google button not found."
+        );
+
         return;
     }
 
-    // Clear previous button
-  
 
-    // Initialize Google
+    // =====================================================
+    // INITIALIZE GOOGLE
+    // =====================================================
+
     google.accounts.id.initialize({
 
         client_id:
-            "221221986548-23g9vo9mm06mtuo6hhohsmg8ujseudh5.apps.googleusercontent.com",
+            GOOGLE_CLIENT_ID,
 
         callback:
             handleGoogleLogin,
 
-        auto_select: false,
+        auto_select:
+            false,
 
-        cancel_on_tap_outside: true
+        cancel_on_tap_outside:
+            true
 
     });
 
-    // Render normal Google button
- 
 
     console.log(
-        "Google Sign-In button ready."
+        "Google Identity Services initialized."
     );
+
+
+    // =====================================================
+    // CUSTOM BUTTON CLICK
+    // =====================================================
+
+    googleButton.addEventListener(
+        "click",
+        function () {
+
+            console.log(
+                "CUSTOM GOOGLE BUTTON CLICKED"
+            );
+
+
+            // Open Google's authentication UI
+
+            google.accounts.id.prompt(
+                function (notification) {
+
+                    console.log(
+                        "Google prompt notification:",
+                        notification
+                    );
+
+
+                    if (
+                        notification.isNotDisplayed()
+                    ) {
+
+                        console.warn(
+                            "Google prompt was not displayed."
+                        );
+
+                    }
+
+
+                    if (
+                        notification.isSkippedMoment()
+                    ) {
+
+                        console.warn(
+                            "Google prompt was skipped."
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    console.log(
+        "Custom Google button ready."
+    );
+
 }
 
 
 // =========================================================
-// START
+// WAIT FOR GOOGLE SCRIPT
 // =========================================================
 
 window.addEventListener(
     "load",
-    initializeGoogleLogin
+    function () {
+
+        initializeGoogleLogin();
+
+    }
 );
