@@ -116,35 +116,28 @@ if (form) {
 
 }
 
-
 // =========================================================
 // GOOGLE LOGIN
 // =========================================================
 
 function handleGoogleLogin(response) {
 
-    console.log(
-        "Google credential received"
-    );
+    console.log("Google credential received");
 
+    if (!response || !response.credential) {
 
-    if (
-        !response ||
-        !response.credential
-    ) {
-
-        alert(
-            "Google login failed."
+        console.error(
+            "Google credential missing:",
+            response
         );
 
+        alert("Google login failed.");
         return;
     }
-
 
     loginWithGoogle(
         response.credential
     );
-
 }
 
 
@@ -152,16 +145,17 @@ function handleGoogleLogin(response) {
 // GOOGLE BACKEND LOGIN
 // =========================================================
 
-async function loginWithGoogle(
-    credential
-) {
+async function loginWithGoogle(credential) {
 
     try {
+
+        console.log(
+            "Sending Google credential to Render..."
+        );
 
         const response = await fetch(
             `${API_URL}/auth/google`,
             {
-
                 method: "POST",
 
                 headers: {
@@ -171,22 +165,23 @@ async function loginWithGoogle(
                 body: JSON.stringify({
                     credential: credential
                 })
-
             }
         );
 
-
         const data =
             await response.json();
-
 
         console.log(
             "Google backend response:",
             data
         );
 
-
         if (!response.ok) {
+
+            console.error(
+                "Google backend error:",
+                data
+            );
 
             alert(
                 data.detail ||
@@ -195,7 +190,6 @@ async function loginWithGoogle(
 
             return;
         }
-
 
         // =================================================
         // SAVE JWT
@@ -206,7 +200,6 @@ async function loginWithGoogle(
             data.access_token
         );
 
-
         // =================================================
         // SAVE USER
         // =================================================
@@ -216,18 +209,16 @@ async function loginWithGoogle(
             JSON.stringify(data.user)
         );
 
-
-        // =================================================
-        // GO TO DASHBOARD
-        // =================================================
-
         console.log(
-            "GOOGLE LOGIN SUCCESS → DASHBOARD"
+            "GOOGLE LOGIN SUCCESS"
         );
 
+        // =================================================
+        // DASHBOARD
+        // =================================================
 
         window.location.replace(
-            "dashboard.html"
+            "../dashboard/dashboard.html"
         );
 
     }
@@ -242,9 +233,7 @@ async function loginWithGoogle(
         alert(
             "Unable to connect to authentication server."
         );
-
     }
-
 }
 
 
@@ -261,7 +250,7 @@ function initializeGoogleLogin() {
     ) {
 
         console.log(
-            "Google Identity Services not loaded yet."
+            "Google Identity Services not loaded yet..."
         );
 
         setTimeout(
@@ -273,18 +262,20 @@ function initializeGoogleLogin() {
     }
 
     const googleButton =
-        document.getElementById("googleButton");
+        document.getElementById(
+            "googleButton"
+        );
 
     if (!googleButton) {
 
-        console.warn(
-            "Google button not found."
+        console.error(
+            "Google button container not found."
         );
 
         return;
     }
 
-    // Prevent duplicate buttons
+    // Prevent duplicate rendering
     googleButton.innerHTML = "";
 
     google.accounts.id.initialize({
@@ -308,7 +299,9 @@ function initializeGoogleLogin() {
 
             theme: "outline",
 
-            size: "large",
+            // IMPORTANT:
+            // Medium disables personalized button
+            size: "medium",
 
             width: 400,
 
@@ -331,10 +324,6 @@ function initializeGoogleLogin() {
 // START GOOGLE LOGIN
 // =========================================================
 
-window.addEventListener(
-    "load",
-    initializeGoogleLogin
-);
 window.addEventListener(
     "load",
     initializeGoogleLogin
