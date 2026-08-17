@@ -299,7 +299,48 @@ function initializeGoogleLogin() {
 
     });
 
-   
+   function initializeGoogleLogin() {
+
+    if (
+        typeof google === "undefined" ||
+        !google.accounts ||
+        !google.accounts.id
+    ) {
+        setTimeout(initializeGoogleLogin, 500);
+        return;
+    }
+
+    google.accounts.id.initialize({
+
+        client_id:
+            "221221986548-23g9vo9mm06mtuo6hhohsmg8ujseudh5.apps.googleusercontent.com",
+
+        callback: handleGoogleLogin,
+
+        auto_select: false
+
+    });
+
+    const button =
+        document.getElementById("customGoogleButton");
+
+    if (!button) {
+        console.error("Custom Google button not found.");
+        return;
+    }
+
+    button.addEventListener("click", function () {
+
+        console.log("Custom Google button clicked");
+
+        google.accounts.id.prompt();
+
+    });
+
+    console.log(
+        "Custom Google authentication initialized."
+    );
+}
 
     console.log(
         "Google Sign-In button initialized."
@@ -307,9 +348,6 @@ function initializeGoogleLogin() {
 }
 
 
-// =========================================================
-// START GOOGLE LOGIN
-// =========================================================
 
 window.addEventListener(
     "load",
