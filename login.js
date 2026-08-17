@@ -272,12 +272,8 @@ function initializeGoogleLogin() {
         return;
     }
 
-
     const googleButton =
-        document.getElementById(
-            "googleButton"
-        );
-
+        document.getElementById("googleButton");
 
     if (!googleButton) {
 
@@ -288,6 +284,8 @@ function initializeGoogleLogin() {
         return;
     }
 
+    // Prevent duplicate buttons
+    googleButton.innerHTML = "";
 
     google.accounts.id.initialize({
 
@@ -295,34 +293,37 @@ function initializeGoogleLogin() {
             "221221986548-23g9vo9mm06mtuo6hhohsmg8ujseudh5.apps.googleusercontent.com",
 
         callback:
-            handleGoogleLogin
+            handleGoogleLogin,
+
+        auto_select: false
 
     });
-
 
     google.accounts.id.renderButton(
 
         googleButton,
 
         {
+            type: "standard",
+
             theme: "outline",
 
             size: "large",
 
             width: 400,
 
-            text: "continue_with",
+            text: "signin_with",
 
-            shape: "rectangular"
+            shape: "rectangular",
+
+            logo_alignment: "left"
         }
 
     );
 
-
     console.log(
-        "Google Login initialized."
+        "Google Sign-In button initialized."
     );
-
 }
 
 
@@ -330,6 +331,10 @@ function initializeGoogleLogin() {
 // START GOOGLE LOGIN
 // =========================================================
 
+window.addEventListener(
+    "load",
+    initializeGoogleLogin
+);
 window.addEventListener(
     "load",
     initializeGoogleLogin
