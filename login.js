@@ -249,7 +249,7 @@ async function loginWithGoogle(
 
 
 // =========================================================
-// INITIALIZE GOOGLE SIGN-IN
+// GOOGLE SIGN-IN INITIALIZATION
 // =========================================================
 
 function initializeGoogleLogin() {
@@ -259,10 +259,7 @@ function initializeGoogleLogin() {
         !google.accounts ||
         !google.accounts.id
     ) {
-
-        console.log(
-            "Google Identity Services not loaded yet."
-        );
+        console.log("Google Identity Services loading...");
 
         setTimeout(
             initializeGoogleLogin,
@@ -276,17 +273,14 @@ function initializeGoogleLogin() {
         document.getElementById("googleButton");
 
     if (!googleButton) {
-
-        console.warn(
-            "Google button not found."
-        );
-
+        console.error("Google button container not found.");
         return;
     }
 
-    // Prevent duplicate buttons
+    // Clear previous button
     googleButton.innerHTML = "";
 
+    // Initialize Google
     google.accounts.id.initialize({
 
         client_id:
@@ -295,10 +289,13 @@ function initializeGoogleLogin() {
         callback:
             handleGoogleLogin,
 
-        auto_select: false
+        auto_select: false,
+
+        cancel_on_tap_outside: true
 
     });
 
+    // Render normal Google button
     google.accounts.id.renderButton(
 
         googleButton,
@@ -310,25 +307,25 @@ function initializeGoogleLogin() {
 
             size: "large",
 
-            width: 400,
-
             text: "signin_with",
 
             shape: "rectangular",
 
-            logo_alignment: "left"
+            logo_alignment: "left",
+
+            width: 400
         }
 
     );
 
     console.log(
-        "Google Sign-In button initialized."
+        "Google Sign-In button ready."
     );
 }
 
 
 // =========================================================
-// START GOOGLE LOGIN
+// START
 // =========================================================
 
 window.addEventListener(
