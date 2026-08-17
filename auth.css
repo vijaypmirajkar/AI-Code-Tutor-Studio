@@ -429,3 +429,40 @@ form{
 }
 
 
+
+
+
+/* =========================================================
+   GOOGLE LOGIN BUTTON
+========================================================= */
+
+.google-login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    min-height: 44px;
+}
+
+#googleButton {
+    width: 400px;
+    min-height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+
+    #googleButton {
+        width: 100%;
+    }
+
+    .google-login-wrapper {
+        width: 100%;
+    }
+
+}
