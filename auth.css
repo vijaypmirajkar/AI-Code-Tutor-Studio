@@ -427,3 +427,75 @@ form{
     max-width:100%;
 
 }
+
+/* =========================================================
+   GOOGLE SIGN-IN BUTTON
+========================================================= */
+
+.google-login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.google-signin-btn {
+
+    width: 100%;
+    max-width: 400px;
+
+    height: 48px;
+
+    background: #ffffff;
+    color: #1f1f1f;
+
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+}
+
+.google-signin-btn:hover {
+
+    background: #f8f9fa;
+
+    box-shadow:
+        0 1px 3px rgba(0,0,0,0.2),
+        0 2px 6px rgba(0,0,0,0.12);
+}
+
+.google-signin-btn:active {
+
+    transform: scale(0.99);
+
+}
+
+.google-icon {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+}
+
+.google-icon svg {
+
+    display: block;
+
+}
