@@ -299,48 +299,27 @@ function initializeGoogleLogin() {
 
     });
 
-   function initializeGoogleLogin() {
+    google.accounts.id.renderButton(
 
-    if (
-        typeof google === "undefined" ||
-        !google.accounts ||
-        !google.accounts.id
-    ) {
-        setTimeout(initializeGoogleLogin, 500);
-        return;
-    }
+        googleButton,
 
-    google.accounts.id.initialize({
+        {
+            type: "standard",
 
-        client_id:
-            "221221986548-23g9vo9mm06mtuo6hhohsmg8ujseudh5.apps.googleusercontent.com",
+            theme: "outline",
 
-        callback: handleGoogleLogin,
+            size: "large",
 
-        auto_select: false
+            width: 400,
 
-    });
+            text: "signin_with",
 
-    const button =
-        document.getElementById("customGoogleButton");
+            shape: "rectangular",
 
-    if (!button) {
-        console.error("Custom Google button not found.");
-        return;
-    }
+            logo_alignment: "left"
+        }
 
-    button.addEventListener("click", function () {
-
-        console.log("Custom Google button clicked");
-
-        google.accounts.id.prompt();
-
-    });
-
-    console.log(
-        "Custom Google authentication initialized."
     );
-}
 
     console.log(
         "Google Sign-In button initialized."
@@ -348,6 +327,9 @@ function initializeGoogleLogin() {
 }
 
 
+// =========================================================
+// START GOOGLE LOGIN
+// =========================================================
 
 window.addEventListener(
     "load",
