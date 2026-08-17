@@ -2,146 +2,26 @@
 // =========================================================
 // LOGIN.JS
 // AI CODE TUTOR STUDIO
-// PRODUCTION VERSION
+// Production Version
 // =========================================================
 
 "use strict";
-
 
 // =========================================================
 // CONFIGURATION
 // =========================================================
 
-const API_URL =
-    "https://ai-code-tutor-studio.onrender.com";
+const API_URL = "https://ai-code-tutor-studio.onrender.com";
 
 const GOOGLE_CLIENT_ID =
     "221221986548-23g9vo9mm06mtuo6hhohsmg8ujseudh5.apps.googleusercontent.com";
 
 
 // =========================================================
-// DOM
+// PAGE ELEMENTS
 // =========================================================
 
-const form =
-    document.getElementById("loginForm");
-
-const googleButton =
-    document.getElementById("googleButton");
-
-
-// =========================================================
-// DASHBOARD REDIRECT
-// =========================================================
-
-function goToDashboard() {
-
-    console.log(
-        "Redirecting to dashboard..."
-    );
-
-    /*
-     * Login page:
-     *
-     * /auth/login.html
-     *
-     * Dashboard:
-     *
-     * /dashboard/dashboard.html
-     */
-
-    window.location.href =
-        "dashboard.html";
-}
-
-
-// =========================================================
-// SAVE AUTHENTICATION
-// =========================================================
-
-function saveAuthentication(data) {
-
-    console.log(
-        "Saving authentication..."
-    );
-
-
-    // -----------------------------------------------------
-    // ACCESS TOKEN
-    // -----------------------------------------------------
-
-    if (
-        !data ||
-        !data.access_token
-    ) {
-
-        console.error(
-            "Access token missing:",
-            data
-        );
-
-        return false;
-    }
-
-
-    localStorage.setItem(
-        "access_token",
-        data.access_token
-    );
-
-
-    // -----------------------------------------------------
-    // USER
-    // -----------------------------------------------------
-
-    if (data.user) {
-
-        localStorage.setItem(
-            "user",
-            JSON.stringify(data.user)
-        );
-
-    }
-
-
-    // -----------------------------------------------------
-    // VERIFY
-    // -----------------------------------------------------
-
-    const savedToken =
-        localStorage.getItem(
-            "access_token"
-        );
-
-    const savedUser =
-        localStorage.getItem(
-            "user"
-        );
-
-
-    console.log(
-        "ACCESS TOKEN SAVED:",
-        !!savedToken
-    );
-
-    console.log(
-        "USER SAVED:",
-        !!savedUser
-    );
-
-
-    if (!savedToken) {
-
-        console.error(
-            "Failed to save access token."
-        );
-
-        return false;
-    }
-
-
-    return true;
-}
+const form = document.getElementById("loginForm");
 
 
 // =========================================================
@@ -150,233 +30,392 @@ function saveAuthentication(data) {
 
 if (form) {
 
-    form.addEventListener(
-        "submit",
-        async function (event) {
+    form.addEventListener("submit", async function (event) {
 
-            event.preventDefault();
+        event.preventDefault();
+
+        console.log("====================================");
+        console.log("EMAIL LOGIN STARTED");
+        console.log("====================================");
+
+
+        // -------------------------------------------------
+        // GET INPUTS
+        // -------------------------------------------------
+
+        const emailElement =
+            document.getElementById("email");
+
+        const passwordElement =
+            document.getElementById("password");
+
+
+        if (!emailElement || !passwordElement) {
+
+            console.error(
+                "Email or password input not found."
+            );
+
+            alert(
+                "Login form is not configured correctly."
+            );
+
+            return;
+        }
+
+
+        const email =
+            emailElement.value.trim();
+
+        const password =
+            passwordElement.value.trim();
+
+
+        // -------------------------------------------------
+        // VALIDATION
+        // -------------------------------------------------
+
+        if (!email) {
+
+            alert(
+                "Please enter your email."
+            );
+
+            emailElement.focus();
+
+            return;
+        }
+
+
+        if (!password) {
+
+            alert(
+                "Please enter your password."
+            );
+
+            passwordElement.focus();
+
+            return;
+        }
+
+
+        // -------------------------------------------------
+        // DISABLE BUTTON
+        // -------------------------------------------------
+
+        const loginButton =
+            form.querySelector(
+                'button[type="submit"]'
+            );
+
+
+        if (loginButton) {
+
+            loginButton.disabled = true;
+
+            loginButton.dataset.originalText =
+                loginButton.textContent;
+
+            loginButton.textContent =
+                "Signing in...";
+        }
+
+
+        try {
+
+            console.log(
+                "Sending login request to:",
+                `${API_URL}/auth/login`
+            );
+
+
+            // -------------------------------------------------
+            // API REQUEST
+            // -------------------------------------------------
+
+            const response =
+                await fetch(
+                    `${API_URL}/auth/login`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+
+                            "Accept":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    }
+                );
 
 
             console.log(
-                "================================"
-            );
-
-            console.log(
-                "EMAIL LOGIN STARTED"
-            );
-
-            console.log(
-                "================================"
+                "Login response status:",
+                response.status
             );
 
 
-            // ------------------------------------------------
-            // GET INPUT
-            // ------------------------------------------------
+            // -------------------------------------------------
+            // READ RESPONSE
+            // -------------------------------------------------
 
-            const emailInput =
-                document.getElementById(
-                    "email"
-                );
-
-            const passwordInput =
-                document.getElementById(
-                    "password"
-                );
-
-
-            if (
-                !emailInput ||
-                !passwordInput
-            ) {
-
-                console.error(
-                    "Email or password input missing."
-                );
-
-                alert(
-                    "Login form error."
-                );
-
-                return;
-            }
-
-
-            const email =
-                emailInput.value.trim();
-
-            const password =
-                passwordInput.value;
-
-
-            // ------------------------------------------------
-            // VALIDATION
-            // ------------------------------------------------
-
-            if (!email) {
-
-                alert(
-                    "Please enter your email."
-                );
-
-                emailInput.focus();
-
-                return;
-            }
-
-
-            if (!password) {
-
-                alert(
-                    "Please enter your password."
-                );
-
-                passwordInput.focus();
-
-                return;
-            }
-
-
-            // ------------------------------------------------
-            // LOGIN
-            // ------------------------------------------------
+            let data = {};
 
             try {
 
-                console.log(
-                    "Connecting to Render backend..."
-                );
+                data =
+                    await response.json();
 
-
-                const response =
-                    await fetch(
-                        `${API_URL}/auth/login`,
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
-
-                            body: JSON.stringify({
-                                email: email,
-                                password: password
-                            })
-                        }
-                    );
-
-
-                console.log(
-                    "LOGIN STATUS:",
-                    response.status
-                );
-
-
-                const rawResponse =
-                    await response.text();
-
-
-                console.log(
-                    "LOGIN RAW RESPONSE:",
-                    rawResponse
-                );
-
-
-                let data;
-
-                try {
-
-                    data =
-                        JSON.parse(
-                            rawResponse
-                        );
-
-                }
-
-                catch (parseError) {
-
-                    console.error(
-                        "Invalid JSON from backend:",
-                        parseError
-                    );
-
-                    alert(
-                        "Backend returned an invalid response."
-                    );
-
-                    return;
-                }
-
-
-                // ------------------------------------------------
-                // ERROR
-                // ------------------------------------------------
-
-                if (!response.ok) {
-
-                    console.error(
-                        "EMAIL LOGIN FAILED:",
-                        data
-                    );
-
-                    alert(
-                        data.detail ||
-                        "Login failed."
-                    );
-
-                    return;
-                }
-
-
-                // ------------------------------------------------
-                // SAVE AUTH
-                // ------------------------------------------------
-
-                const saved =
-                    saveAuthentication(
-                        data
-                    );
-
-
-                if (!saved) {
-
-                    alert(
-                        "Login succeeded, but authentication data could not be saved."
-                    );
-
-                    return;
-                }
-
-
-                console.log(
-                    "EMAIL LOGIN SUCCESS"
-                );
-
-
-                // ------------------------------------------------
-                // DASHBOARD
-                // ------------------------------------------------
-
-                goToDashboard();
-
-            }
-
-            catch (error) {
+            } catch (jsonError) {
 
                 console.error(
-                    "EMAIL LOGIN ERROR:",
-                    error
+                    "Invalid JSON response:",
+                    jsonError
+                );
+
+                data = {};
+            }
+
+
+            console.log(
+                "Login backend response:",
+                data
+            );
+
+
+            // -------------------------------------------------
+            // LOGIN ERROR
+            // -------------------------------------------------
+
+            if (!response.ok) {
+
+                const errorMessage =
+                    data.detail ||
+                    data.message ||
+                    "Login failed.";
+
+                console.error(
+                    "LOGIN FAILED:",
+                    errorMessage
                 );
 
                 alert(
-                    "Cannot connect to the backend."
+                    errorMessage
+                );
+
+                return;
+            }
+
+
+            // -------------------------------------------------
+            // CHECK TOKEN
+            // -------------------------------------------------
+
+            if (!data.access_token) {
+
+                console.error(
+                    "Backend did not return access_token.",
+                    data
+                );
+
+                alert(
+                    "Login succeeded, but authentication token was not received."
+                );
+
+                return;
+            }
+
+
+            // -------------------------------------------------
+            // CHECK USER
+            // -------------------------------------------------
+
+            if (!data.user) {
+
+                console.error(
+                    "Backend did not return user information.",
+                    data
+                );
+
+                alert(
+                    "Login succeeded, but user information was not received."
+                );
+
+                return;
+            }
+
+
+            // =================================================
+            // SAVE AUTHENTICATION
+            // =================================================
+
+            localStorage.setItem(
+                "access_token",
+                data.access_token
+            );
+
+
+            localStorage.setItem(
+                "user",
+                JSON.stringify(
+                    data.user
+                )
+            );
+
+
+            // Remove old token if it exists
+
+            localStorage.removeItem(
+                "token"
+            );
+
+
+            // Save current user name
+
+            if (data.user.name) {
+
+                localStorage.setItem(
+                    "current_user_name",
+                    data.user.name
                 );
             }
 
-        }
-    );
 
+            console.log(
+                "Authentication saved."
+            );
+
+            console.log(
+                "Token exists:",
+                !!localStorage.getItem(
+                    "access_token"
+                )
+            );
+
+            console.log(
+                "User:",
+                data.user
+            );
+
+
+            // =================================================
+            // VERIFY TOKEN WAS SAVED
+            // =================================================
+
+            const savedToken =
+                localStorage.getItem(
+                    "access_token"
+                );
+
+
+            if (!savedToken) {
+
+                console.error(
+                    "Token could not be saved to localStorage."
+                );
+
+                alert(
+                    "Login completed, but session could not be saved."
+                );
+
+                return;
+            }
+
+
+            // =================================================
+            // LOGIN SUCCESS
+            // =================================================
+
+            console.log(
+                "===================================="
+            );
+
+            console.log(
+                "LOGIN SUCCESS"
+            );
+
+            console.log(
+                "User:",
+                data.user
+            );
+
+            console.log(
+                "Redirecting to dashboard..."
+            );
+
+            console.log(
+                "===================================="
+            );
+
+
+            // =================================================
+            // DASHBOARD
+            // =================================================
+            //
+            // IMPORTANT:
+            // dashboard.html is in the SAME folder
+            // as login.html.
+            //
+            // Therefore:
+            //
+            // dashboard.html
+            //
+            // is the correct path.
+            // =================================================
+
+            window.location.replace(
+                "dashboard.html"
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "===================================="
+            );
+
+            console.error(
+                "LOGIN CONNECTION ERROR"
+            );
+
+            console.error(
+                error
+            );
+
+            console.error(
+                "===================================="
+            );
+
+
+            alert(
+                "Unable to connect to the authentication server."
+            );
+        }
+
+        finally {
+
+            // -------------------------------------------------
+            // ENABLE BUTTON
+            // -------------------------------------------------
+
+            if (loginButton) {
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    loginButton.dataset.originalText ||
+                    "Login";
+            }
+        }
+
+    });
 }
 
 
@@ -384,26 +423,20 @@ if (form) {
 // GOOGLE LOGIN CALLBACK
 // =========================================================
 
-function handleGoogleLogin(
-    response
-) {
+function handleGoogleLogin(response) {
 
     console.log(
-        "================================"
+        "===================================="
     );
 
     console.log(
-        "GOOGLE CREDENTIAL RECEIVED"
+        "GOOGLE LOGIN CALLBACK"
     );
 
     console.log(
-        "================================"
+        "===================================="
     );
 
-
-    // -----------------------------------------------------
-    // VALIDATE RESPONSE
-    // -----------------------------------------------------
 
     if (
         !response ||
@@ -416,7 +449,7 @@ function handleGoogleLogin(
         );
 
         alert(
-            "Google login failed. Credential missing."
+            "Google login failed. Credential was not received."
         );
 
         return;
@@ -424,7 +457,7 @@ function handleGoogleLogin(
 
 
     console.log(
-        "Google credential received successfully."
+        "Google credential received."
     );
 
 
@@ -442,31 +475,10 @@ async function loginWithGoogle(
     credential
 ) {
 
-    console.log(
-        "================================"
-    );
-
-    console.log(
-        "GOOGLE BACKEND LOGIN STARTED"
-    );
-
-    console.log(
-        "================================"
-    );
-
-
     try {
 
-        // -------------------------------------------------
-        // SEND GOOGLE TOKEN TO RENDER
-        // -------------------------------------------------
-
         console.log(
-            "Sending Google credential to:"
-        );
-
-        console.log(
-            `${API_URL}/auth/google`
+            "Sending Google credential to Render..."
         );
 
 
@@ -478,6 +490,9 @@ async function loginWithGoogle(
 
                     headers: {
                         "Content-Type":
+                            "application/json",
+
+                        "Accept":
                             "application/json"
                     },
 
@@ -489,76 +504,54 @@ async function loginWithGoogle(
             );
 
 
-        // -------------------------------------------------
-        // STATUS
-        // -------------------------------------------------
-
         console.log(
-            "GOOGLE BACKEND STATUS:",
+            "Google backend status:",
             response.status
         );
 
 
         // -------------------------------------------------
-        // RESPONSE
+        // READ RESPONSE
         // -------------------------------------------------
 
-        const rawResponse =
-            await response.text();
-
-
-        console.log(
-            "GOOGLE BACKEND RAW RESPONSE:",
-            rawResponse
-        );
-
-
-        let data;
+        let data = {};
 
         try {
 
             data =
-                JSON.parse(
-                    rawResponse
-                );
+                await response.json();
 
-        }
-
-        catch (parseError) {
+        } catch (error) {
 
             console.error(
-                "Could not parse Google backend response:",
-                parseError
+                "Google response is not valid JSON:",
+                error
             );
 
-            alert(
-                "Authentication server returned an invalid response."
-            );
-
-            return;
+            data = {};
         }
 
 
         console.log(
-            "GOOGLE BACKEND DATA:",
+            "Google backend response:",
             data
         );
 
 
         // -------------------------------------------------
-        // BACKEND ERROR
+        // ERROR
         // -------------------------------------------------
 
         if (!response.ok) {
 
             console.error(
-                "GOOGLE LOGIN FAILED:",
+                "Google authentication failed:",
                 data
             );
 
-
             alert(
                 data.detail ||
+                data.message ||
                 "Google login failed."
             );
 
@@ -570,18 +563,15 @@ async function loginWithGoogle(
         // TOKEN CHECK
         // -------------------------------------------------
 
-        if (
-            !data.access_token
-        ) {
+        if (!data.access_token) {
 
             console.error(
-                "Backend did not return access token:",
+                "Google login did not return access token:",
                 data
             );
 
-
             alert(
-                "Google login succeeded, but no access token was returned."
+                "Google login succeeded, but no authentication token was returned."
             );
 
             return;
@@ -589,31 +579,94 @@ async function loginWithGoogle(
 
 
         // -------------------------------------------------
-        // SAVE AUTHENTICATION
+        // USER CHECK
         // -------------------------------------------------
 
-        const saved =
-            saveAuthentication(
+        if (!data.user) {
+
+            console.error(
+                "Google login did not return user:",
                 data
             );
 
-
-        if (!saved) {
-
             alert(
-                "Google login succeeded, but authentication could not be saved."
+                "Google login succeeded, but user information was not returned."
             );
 
             return;
         }
 
 
-        // -------------------------------------------------
-        // SUCCESS
-        // -------------------------------------------------
+        // =================================================
+        // SAVE TOKEN
+        // =================================================
+
+        localStorage.setItem(
+            "access_token",
+            data.access_token
+        );
+
+
+        // =================================================
+        // SAVE USER
+        // =================================================
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(
+                data.user
+            )
+        );
+
+
+        // Remove old token
+
+        localStorage.removeItem(
+            "token"
+        );
+
+
+        // Save current name
+
+        if (data.user.name) {
+
+            localStorage.setItem(
+                "current_user_name",
+                data.user.name
+            );
+        }
+
+
+        // =================================================
+        // VERIFY TOKEN
+        // =================================================
+
+        const savedToken =
+            localStorage.getItem(
+                "access_token"
+            );
+
+
+        if (!savedToken) {
+
+            console.error(
+                "Google token was not saved."
+            );
+
+            alert(
+                "Google login completed, but session could not be saved."
+            );
+
+            return;
+        }
+
+
+        // =================================================
+        // GOOGLE LOGIN SUCCESS
+        // =================================================
 
         console.log(
-            "================================"
+            "===================================="
         );
 
         console.log(
@@ -621,31 +674,44 @@ async function loginWithGoogle(
         );
 
         console.log(
-            "================================"
+            "User:",
+            data.user
+        );
+
+        console.log(
+            "Redirecting to dashboard..."
+        );
+
+        console.log(
+            "===================================="
         );
 
 
-        // -------------------------------------------------
-        // REDIRECT
-        // -------------------------------------------------
+        // IMPORTANT:
+        // dashboard.html is in the SAME folder.
 
-        goToDashboard();
+        window.location.replace(
+            "dashboard.html"
+        );
 
     }
 
     catch (error) {
 
         console.error(
-            "================================"
+            "===================================="
         );
 
         console.error(
-            "GOOGLE LOGIN ERROR:",
+            "GOOGLE LOGIN ERROR"
+        );
+
+        console.error(
             error
         );
 
         console.error(
-            "================================"
+            "===================================="
         );
 
 
@@ -678,7 +744,7 @@ function initializeGoogleLogin() {
     ) {
 
         console.log(
-            "Google Identity Services not loaded yet."
+            "Google Identity Services not loaded yet..."
         );
 
 
@@ -693,18 +759,18 @@ function initializeGoogleLogin() {
 
 
     // -----------------------------------------------------
-    // CHECK BUTTON
+    // GET BUTTON
     // -----------------------------------------------------
 
-    const button =
+    const googleButton =
         document.getElementById(
             "googleButton"
         );
 
 
-    if (!button) {
+    if (!googleButton) {
 
-        console.error(
+        console.warn(
             "Google button container not found."
         );
 
@@ -713,10 +779,10 @@ function initializeGoogleLogin() {
 
 
     // -----------------------------------------------------
-    // CLEAR OLD BUTTON
+    // CLEAR EXISTING BUTTON
     // -----------------------------------------------------
 
-    button.innerHTML = "";
+    googleButton.innerHTML = "";
 
 
     // -----------------------------------------------------
@@ -736,35 +802,26 @@ function initializeGoogleLogin() {
 
         cancel_on_tap_outside:
             true
-
     });
 
 
     // -----------------------------------------------------
-    // RENDER STANDARD GOOGLE BUTTON
+    // RENDER GOOGLE BUTTON
     // -----------------------------------------------------
 
     google.accounts.id.renderButton(
 
-        button,
+        googleButton,
 
         {
-
             type:
                 "standard",
 
             theme:
                 "outline",
 
-            /*
-             * IMPORTANT
-             *
-             * medium prevents Google's
-             * personalized account button.
-             */
-
             size:
-                "medium",
+                "large",
 
             width:
                 400,
@@ -777,32 +834,58 @@ function initializeGoogleLogin() {
 
             logo_alignment:
                 "left"
-
         }
 
     );
 
 
     console.log(
-        "Google Sign-In initialized successfully."
+        "Google Sign-In button initialized successfully."
     );
 }
 
 
 // =========================================================
-// WAIT FOR PAGE LOAD
+// START GOOGLE LOGIN AFTER PAGE LOAD
 // =========================================================
 
 window.addEventListener(
     "load",
     function () {
 
-        console.log(
-            "Login page loaded."
-        );
-
-
         initializeGoogleLogin();
 
     }
 );
+
+
+// =========================================================
+// DEBUG INFORMATION
+// =========================================================
+
+console.log(
+    "===================================="
+);
+
+console.log(
+    "AI CODE TUTOR STUDIO - LOGIN.JS"
+);
+
+console.log(
+    "Login JS loaded successfully."
+);
+
+console.log(
+    "Backend:",
+    API_URL
+);
+
+console.log(
+    "Dashboard:",
+    "dashboard.html"
+);
+
+console.log(
+    "===================================="
+);
+
