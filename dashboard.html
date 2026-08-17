@@ -1,615 +1,220 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<title>Dashboard | AI Code Tutor Studio</title>
 
-    <title>
-        Dashboard | AI Code Tutor Studio
-    </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- =====================================================
-         GOOGLE FONT
-    ====================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- =====================================================
-         DASHBOARD CSS
-    ====================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="dvariables.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="dglobal.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="dashboard.css"
-    >
+<link rel="stylesheet" href="dvariables.css">
+<link rel="stylesheet" href="dglobal.css">
+<link rel="stylesheet" href="dashboard.css">
 
 </head>
 
-
 <body>
 
-
-<!-- =========================================================
-     SIDEBAR
-========================================================= -->
+<!-- ===================== SIDEBAR ===================== -->
 
 <aside class="sidebar">
 
-
-    <!-- LOGO -->
-
     <div class="logo">
 
-        <div class="logo-icon">
-            AI
-        </div>
+        <div class="logo-icon">AI</div>
 
-        <h2>
-            Code Tutor
-        </h2>
+        <h2>Code Tutor</h2>
 
     </div>
 
-
-    <!-- NAVIGATION -->
-
     <nav>
 
+        <a href="#" class="active">
 
-        <!-- DASHBOARD -->
-
-        <a
-            href="dashboard.html"
-            class="active"
-        >
             🏠 Dashboard
+
         </a>
 
-
-        <!-- WORKSPACE -->
-
-        <a
-            href="workspace.html"
-            data-page="workspace"
-        >
-            💻 Workspace
-        </a>
+<a href="workspace.html" data-page="workspace">
+    💻 Workspace
+</a>
 
 
-        <!-- SETTINGS -->
-
-        <a
-            href="settings.html"
-            data-page="settings"
-        >
-            ⚙️ Settings
-        </a>
-
+<a href="settings.html" data-page="settings">
+    ⚙️ Settings
+</a>
 
     </nav>
 
-
-    <!-- LOGOUT -->
-
-    <button
-        class="logout-btn"
-        id="logoutBtn"
-        type="button"
-    >
-        Logout
-    </button>
-
+<button class="logout-btn">
+    Logout
+</button>
 
 </aside>
 
-
-
-<!-- =========================================================
-     MAIN CONTENT
-========================================================= -->
+<!-- ===================== MAIN ===================== -->
 
 <main class="main">
 
+<header class="topbar">
 
-    <!-- =====================================================
-         TOPBAR
-    ====================================================== -->
+    <div>
 
-    <header class="topbar">
+        <h1>
 
-        <div>
+            Welcome Back 👋
 
-            <h1 id="welcomeTitle">
-                Welcome Back 👋
-            </h1>
+        </h1>
 
-            <p>
-                Continue learning programming with AI.
-            </p>
+        <p>
 
-        </div>
+            Continue learning programming with AI.
 
+        </p>
 
-        <button
-            class="primary-btn"
-            id="newProjectBtn"
-            type="button"
-        >
-            + New Project
-        </button>
+    </div>
 
-    </header>
+    <button class="primary-btn">
 
+        + New Project
 
+    </button>
 
-    <!-- =====================================================
-         STATS
-    ====================================================== -->
+</header>
 
-    <section class="stats-grid">
+<!-- ===================== STATS ===================== -->
 
+<section class="stats-grid">
 
-        <!-- LEARNING TIME -->
 
-        <div class="stat-card">
+<div
+    class="stat-number"
+    data-stat="learning-time"
+>
+    0h
+</div>
 
-            <div
-                class="stat-number"
-                data-stat="learning-time"
-            >
-                0h
-            </div>
+<div
+    class="stat-number"
+    data-stat="progress"
+>
+    0%
+</div>
 
-            <div class="stat-label">
-                Learning Time
-            </div>
+</section>
 
-        </div>
+<!-- ===================== CONTINUE ===================== -->
 
+<section>
 
-        <!-- PROGRESS -->
+<h2 class="section-title">
 
-        <div class="stat-card">
+Continue Learning
 
-            <div
-                class="stat-number"
-                data-stat="progress"
-            >
-                0%
-            </div>
+</h2>
 
-            <div class="stat-label">
-                Progress
-            </div>
+<div class="project-grid">
 
-        </div>
+<div class="learning-card">
 
+    <h3 class="learning-title">
+        Binary Search
+    </h3>
 
-    </section>
+    <p class="learning-step">
+        Step 1 of 1
+    </p>
 
+    <button class="continue-btn">
+        Continue
+    </button>
 
+</div>
+<div class="learning-card">
 
-    <!-- =====================================================
-         CONTINUE LEARNING
-    ====================================================== -->
+    <h3 class="learning-title">
+        Linked List
+    </h3>
 
-    <section>
+    <p class="learning-step">
+        Step 1 of 1
+    </p>
 
+    <button class="continue-btn">
+        Continue
+    </button>
 
-        <h2 class="section-title">
-            Continue Learning
-        </h2>
+</div>
 
+<div class="learning-card">
 
-        <div class="project-grid">
+    <h3 class="learning-title">
+        Recursion
+    </h3>
 
+    <p class="learning-step">
+        Step 1 of 1
+    </p>
 
-            <!-- BINARY SEARCH -->
+    <button class="continue-btn">
+        Continue
+    </button>
 
-            <div class="learning-card">
+</div>
+</section>
 
-                <h3 class="learning-title">
-                    Binary Search
-                </h3>
+<!-- ===================== AI ===================== -->
 
-                <p class="learning-step">
-                    Step 1 of 1
-                </p>
+<section>
 
-                <button
-                    class="continue-btn"
-                    type="button"
-                    data-topic="Binary Search"
-                >
-                    Continue
-                </button>
+<h2 class="section-title">
 
-            </div>
+AI Suggestions
 
+</h2>
 
+<div class="suggestion-card">
 
-            <!-- LINKED LIST -->
+<p>
 
-            <div class="learning-card">
+💡 Practice Merge Sort today.
 
-                <h3 class="learning-title">
-                    Linked List
-                </h3>
+</p>
 
-                <p class="learning-step">
-                    Step 1 of 1
-                </p>
+</div>
 
-                <button
-                    class="continue-btn"
-                    type="button"
-                    data-topic="Linked List"
-                >
-                    Continue
-                </button>
+<div class="suggestion-card">
 
-            </div>
+<p>
 
+💡 Review Time Complexity before continuing.
 
+</p>
 
-            <!-- RECURSION -->
+</div>
 
-            <div class="learning-card">
+<div class="suggestion-card">
 
-                <h3 class="learning-title">
-                    Recursion
-                </h3>
+<p>
 
-                <p class="learning-step">
-                    Step 1 of 1
-                </p>
+💡 You are improving recursion skills.
 
-                <button
-                    class="continue-btn"
-                    type="button"
-                    data-topic="Recursion"
-                >
-                    Continue
-                </button>
+</p>
 
-            </div>
+</div>
 
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         AI SUGGESTIONS
-    ====================================================== -->
-
-    <section>
-
-
-        <h2 class="section-title">
-            AI Suggestions
-        </h2>
-
-
-        <div class="suggestion-card">
-
-            <p>
-                💡 Practice Merge Sort today.
-            </p>
-
-        </div>
-
-
-        <div class="suggestion-card">
-
-            <p>
-                💡 Review Time Complexity before continuing.
-            </p>
-
-        </div>
-
-
-        <div class="suggestion-card">
-
-            <p>
-                💡 You are improving recursion skills.
-            </p>
-
-        </div>
-
-
-    </section>
+</section>
 
 
 </main>
 
-
-
-<!-- =========================================================
-     DASHBOARD SCRIPT
-========================================================= -->
-
 <script src="dashboards.js"></script>
-
-
-
-<!-- =========================================================
-     DASHBOARD AUTH CHECK
-========================================================= -->
-
-<script>
-
-"use strict";
-
-
-// =========================================================
-// CHECK LOGIN
-// =========================================================
-
-const accessToken =
-    localStorage.getItem(
-        "access_token"
-    );
-
-
-const savedUser =
-    localStorage.getItem(
-        "user"
-    );
-
-
-// =========================================================
-// IF USER IS NOT LOGGED IN
-// =========================================================
-
-if (!accessToken) {
-
-    console.warn(
-        "No authentication token found."
-    );
-
-    window.location.replace(
-        "/login/login.html"
-    );
-
-}
-
-
-// =========================================================
-// LOAD USER
-// =========================================================
-
-let currentUser = null;
-
-
-if (savedUser) {
-
-    try {
-
-        currentUser =
-            JSON.parse(
-                savedUser
-            );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Unable to read saved user:",
-            error
-        );
-
-    }
-
-}
-
-
-// =========================================================
-// DISPLAY USER NAME
-// =========================================================
-
-if (
-    currentUser &&
-    currentUser.name
-) {
-
-    const welcomeTitle =
-        document.getElementById(
-            "welcomeTitle"
-        );
-
-
-    if (welcomeTitle) {
-
-        welcomeTitle.textContent =
-            `Welcome Back ${currentUser.name} 👋`;
-
-    }
-
-}
-
-
-// =========================================================
-// LOGOUT
-// =========================================================
-
-const logoutBtn =
-    document.getElementById(
-        "logoutBtn"
-    );
-
-
-if (logoutBtn) {
-
-    logoutBtn.addEventListener(
-        "click",
-        function () {
-
-            console.log(
-                "Logging out..."
-            );
-
-
-            // Remove authentication
-
-            localStorage.removeItem(
-                "access_token"
-            );
-
-
-            localStorage.removeItem(
-                "user"
-            );
-
-
-            localStorage.removeItem(
-                "token"
-            );
-
-
-            // Return to login
-
-            window.location.replace(
-                "/login/login.html"
-            );
-
-        }
-    );
-
-}
-
-
-// =========================================================
-// NEW PROJECT
-// =========================================================
-
-const newProjectBtn =
-    document.getElementById(
-        "newProjectBtn"
-    );
-
-
-if (newProjectBtn) {
-
-    newProjectBtn.addEventListener(
-        "click",
-        function () {
-
-            window.location.href =
-                "workspace.html";
-
-        }
-    );
-
-}
-
-
-// =========================================================
-// CONTINUE BUTTONS
-// =========================================================
-
-const continueButtons =
-    document.querySelectorAll(
-        ".continue-btn"
-    );
-
-
-continueButtons.forEach(
-    function (button) {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                const topic =
-                    button.dataset.topic ||
-                    "";
-
-
-                localStorage.setItem(
-                    "selected_topic",
-                    topic
-                );
-
-
-                window.location.href =
-                    "workspace.html";
-
-            }
-        );
-
-    }
-);
-
-
-// =========================================================
-// DEBUG
-// =========================================================
-
-console.log(
-    "===================================="
-);
-
-console.log(
-    "AI CODE TUTOR STUDIO DASHBOARD"
-);
-
-console.log(
-    "DASHBOARD LOADED"
-);
-
-console.log(
-    "User:",
-    currentUser
-);
-
-console.log(
-    "Token:",
-    accessToken
-);
-
-console.log(
-    "===================================="
-);
-
-</script>
-
 
 </body>
 
