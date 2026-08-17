@@ -10,3 +10,4 @@ python-jose[cryptography]
 email-validator
 google-genai
 python-dotenv
+google-auth
